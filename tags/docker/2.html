@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Docker</title>
+
+  <link rel="canonical" href='/tags/docker/2'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Docker' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/tags/docker/2' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='site-heading'>
+          <h1>
+            Docker
+              <small>(Page 2)</small>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+          <div class="container-sm-height">
+    <div class="row row-sm-height">
+      <div class="col-md-6 right-border col-sm-height">
+        
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/docker-compose">docker-compose</a></h2>
+  <p class="post-meta">Published on Monday, July 11, 2016</p>
+<p>When using Docker for some real world application often multiple Containers are required and to build and run them along with their <a title="Dockerfile" href="dockerfile.html" target="_blank">Dockerfile</a>s we need the scripts for building and running them; as realized in <a title="Dockerizing Mongo and Express" href="dockerizing-mongo-and-express.html" target="_blank">Dockerizing Mongo and Express</a>. This becomes hassle and Docker has docker-compose utility that solves exactly this. We can create a “Compose file” (docker-compose.yml file) which is a YAML file; a human readable data serialization format; we configure the application services and its requirements in this file and then using the tool we can create and start all the services using this “compose file”. We define the container environment in a Dockerfile and how they relate to each other and run together in the compose file and then using the docker-compose we can build / run / stop etc them in the single go together.</p>    <p class="small"><a href="/posts/docker-compose">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/dockerfile">Dockerfile</a></h2>
+  <p class="post-meta">Published on Tuesday, June 14, 2016</p>
+<p>Docker can build images automatically by reading the instructions from a Dockerfile. Its a text file that contains the commands how to assemble the required image. This can be used as a replacement of manually creating an image from scratch installing required software etc and then exporting and loading it someplace else; the technique we discussed in the <a href="http://weblogs.com.pk/khurram/archive/2016/05/31/docker-on-raspberry-pi.aspx">first Docker post here</a>. We can simply handover the Dockerfile instead. Lets create a Node Container using the Dockerfile for that simple Hello World thing! Create a Dockerfile; and punch in the following</p>    <p class="small"><a href="/posts/dockerfile">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/running-node-application-in-docker-container-on-raspberry-pi">Running Node Application in Docker Container on Raspberry Pi</a></h2>
+  <p class="post-meta">Published on Wednesday, June 1, 2016</p>
+<p><img width="640" height="285" style="margin:10px 10px 0px 0px;" src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*_MtS4HqN2srTcrSyet61DQ.jpeg"></p>    <p class="small"><a href="/posts/running-node-application-in-docker-container-on-raspberry-pi">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/dockerizing-mongo-and-express">Dockerizing Mongo and Express</a></h2>
+  <p class="post-meta">Published on Thursday, April 7, 2016</p>
+<p>Now that we are familiar with the Docker and how it helps us in high isolation and compartmentalization; lets expand and try out deploying some real world application. I will be using the application that we built for <a title="MongoDB and Mongoose" href="http://weblogs.com.pk/khurram/archive/2016/04/11/mongodb-and-mongoose.aspx">MongoDB and Mongoose</a>; its an Express JS / MongoDB application and we will try deploying it across two Docker containers; one for MongoDB and the other for Express in spirit of Microservice Architecture. As per wikipedia; Microservices are a more concrete and modern interpretation of service-oriented architectures (SOA) used to build distributed software systems. Like in SOA, services in a microservice architecture are processes that communicate with each other over the network in order to fulfill a goal. Also, like in SOA, these services use technology agnostic protocols. Using separate Container for each microservice; we get fine control and can monitor and distribute components of our application at each microservice level.</p>    <p class="small"><a href="/posts/dockerizing-mongo-and-express">Read more...</a></p>
+</div>
+
+  <div>
+    <div class="float-sm-start">
+        <a class="btn btn-primary" href="/tags/docker" role="button"><i class="fas fa-angle-double-left"></i> Newer</a>
+    </div>
+    <div class="float-sm-end">
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+      </div>
+      <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
+          <a href="/tags/docker" class="badge text-bg-dark"> Docker (14)</a>
+          <a href="/tags/system-administration" class="badge text-bg-light"> System Administration (12)</a>
+          <a href="/tags/linux" class="badge text-bg-light"> Linux (12)</a>
+          <a href="/tags/databases" class="badge text-bg-light"> Databases (10)</a>
+          <a href="/tags/net" class="badge text-bg-light"> .NET (8)</a>
+          <a href="/tags/observability" class="badge text-bg-light"> Observability (6)</a>
+          <a href="/tags/node" class="badge text-bg-light"> Node (6)</a>
+          <a href="/tags/asp.net" class="badge text-bg-light"> ASP.NET (4)</a>
+          <a href="/tags/visual-studio" class="badge text-bg-light"> Visual Studio (4)</a>
+          <a href="/tags/raspberry-pi" class="badge text-bg-light"> Raspberry Pi (3)</a>
+          <a href="/tags/esp8266" class="badge text-bg-light"> ESP8266 (2)</a>
+          <a href="/tags/iot" class="badge text-bg-light"> IoT (2)</a>
+          <a href="/tags/devops" class="badge text-bg-light"> DevOps (2)</a>
+          <a href="/tags/windows" class="badge text-bg-light"> Windows (2)</a>
+          <a href="/tags/arduino" class="badge text-bg-light"> Arduino (1)</a>
+          <a href="/tags/entity-framework" class="badge text-bg-light"> Entity Framework (1)</a>
+          <a href="/tags/python" class="badge text-bg-light"> Python (1)</a>
+      </div>
+    </div>
+  </div>
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

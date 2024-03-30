@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Running Node Application in Docker Container on Raspberry Pi</title>
+
+  <link rel="canonical" href='/posts/running-node-application-in-docker-container-on-raspberry-pi'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Running Node Application in Docker Container on Raspberry Pi' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/running-node-application-in-docker-container-on-raspberry-pi' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Running Node Application in Docker Container on Raspberry Pi
+          </h1>
+            <div class="meta">Published on Wednesday, June 1, 2016</div>
+              <div class="mt-3">
+                  <a href="/tags/docker" class="badge text-bg-light"> Docker</a>
+                  <a href="/tags/linux" class="badge text-bg-light"> Linux</a>
+                  <a href="/tags/node" class="badge text-bg-light"> Node</a>
+                  <a href="/tags/raspberry-pi" class="badge text-bg-light"> Raspberry Pi</a>
+                  <a href="/tags/system-administration" class="badge text-bg-light"> System Administration</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <h2>Dockerizing Node</h2>  <ul>  <li>Part 1: <a title="Running Node Application in Docker Container on Raspberry Pi" href="running-node-application-in-docker-container-on-raspberry-pi.html">Running Node Application in Docker Container on Raspberry Pi</a></li>  <li>Part 2: <a title="Dockerfile" href="dockerfile.html">Dockerfile</a>  </li><li>Part 3: <a title="Dockerizing Mongo and Express" href="dockerizing-mongo-and-express.html">Dockerizing Mongo and Express</a>  </li><li>Part 4: <a title="docker-compose" href="docker-compose.html">docker-compose</a>  </li><li>Part 5: <a title="Rancher–First Application" href="rancher-first-application.html">Rancher–First Application</a>  </li></ul>    <p><img width="640" height="285" style="margin:10px 10px 0px 0px;" src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*_MtS4HqN2srTcrSyet61DQ.jpeg"></p>      <p>Lets run a Node application in <a title="Docker on Raspberry Pi" href="http://weblogs.com.pk/khurram/archive/2016/05/31/docker-on-raspberry-pi.aspx">Docker on Raspberry Pi</a>; for the proof of concept; I will be using a simple hello world app and a GIT/SSH setup we made in <a title="Staging Node Application on Raspberry Pi" href="http://weblogs.com.pk/khurram/archive/2016/05/19/staging-node-application-on-raspberry-pi.aspx">Staging Node Application on Raspberry Pi</a>. The Docker way of running the application is that we have our “data” and “application” files outside of the container; so that container remains completely disposable. When running the container; we can mount the directory from the Host OS; using this feature we can have our data and application files on the Host OS and they are being used from the Container; something like this:</p>      <p><img width="368" height="349" title="image" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="image" src="/images/Running-Node-Application-in-Docker-Conta_F51C/image.png" border="0"></p>      <p>We can continue to have the GIT / NGINX arrangements that we did in <a title="Staging Node Application on Raspberry Pi" href="http://weblogs.com.pk/khurram/archive/2016/05/19/staging-node-application-on-raspberry-pi.aspx">Staging Node Application on Raspberry Pi</a>; but now we can run Node and MongoDB (and others) from Containers. We already have made the Node Docker image in the <a title="Docker on Raspberry Pi" href="http://weblogs.com.pk/khurram/archive/2016/05/31/docker-on-raspberry-pi.aspx">Docker on Raspberry Pi</a>; all we need is to run is so that we mount /home/pi/hello directory into the Node Container and run Node in the Container, doing so we will have the Node server at container’s 3000 port, expose this port to the Host OS’s 3000 port so that NGINX forwards the request to Host OS’s 3000 port when it receive any request at Host OS’ http://ip/node endpoint</p>      <p><font face="Courier New">pi&#64;raspberrypi:~ $ docker images      <br>REPOSITORY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TAG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMAGE ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SIZE       <br>khurram/pi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; node&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6af338545368&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5 hours ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 159 MB       <br>khurram/pi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nano&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 99f0053b387e&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6 hours ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 105.6 MB       <br>resin/rpi-raspbian&nbsp;&nbsp; jessie&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80a737f1a654&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7 days ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80.01 MB       <br>pi&#64;raspberrypi:~ $ cd hello       <br>pi&#64;raspberrypi:~/hello $ ls       <br>hello.js       <br>pi&#64;raspberrypi:~/hello $ docker run -p 3000:3000 -v /home/pi/hello:/hello -it khurram/pi:node       <br>root&#64;381ece8ec01a:/# cd /hello       <br>root&#64;381ece8ec01a:/hello# ls       <br>hello.js       <br>root&#64;381ece8ec01a:/hello# nodejs hello.js       <br>Server running at port 3000</font></p>      <ul>     <li>-p 3000:3000 is to expose container’s 3000 port and map it to Host OS’s 3000; the port of container where node application will run in the container and host os port where nginx is expected to forward the requests </li>        <li>-v localpath:remotepath is to mount the Host OS’s localpath directory as a remotepath in the container </li>        <li>-it is for interactive terminal </li>        <li>khurram/pi:node is the Node image we created </li>   </ul>      <p>Once the container is running and we are on its terminal; we can start our node app; we have to leave the terminal running so Node server continue to run; and from another terminal we can issue docker ps to get the list of all the running container</p>      <p><font face="Courier New">pi&#64;raspberrypi:~ $ docker ps      <br>CONTAINER ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NAMES       <br>381ece8ec01a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; khurram/pi:node&nbsp;&nbsp;&nbsp;&nbsp; "/bin/bash"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 minutes ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Up 2 minutes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.0.0.0:3000-&gt;3000/tcp&nbsp;&nbsp; goofy_khorana</font></p>      <ul>     <li>Note; how the ports are mapped </li>        <li>Note the NAMES column; Docker has named our container “dynamically” </li>   </ul>      <p>We can try http://ip:3000 and http://ip/node URL and our node application should be running there; using the Container Name or Container ID we can stop it. We can issue docker ps –a to list all the containers including those that are stopped</p>      <p><font face="Courier New">pi&#64;raspberrypi:~ $ docker stop goofy_khorana      <br>goofy_khorana       <br>pi&#64;raspberrypi:~ $ docker ps       <br>CONTAINER ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NAMES       <br>pi&#64;raspberrypi:~ $ docker ps -a       <br>CONTAINER ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NAMES       <br>381ece8ec01a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; khurram/pi:node&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "/bin/bash"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9 minutes ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Exited (130) 9 seconds ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goofy_khorana       <br>aece7089082d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; khurram/pi:node&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "-p 3000:3000 -v /hom"&nbsp;&nbsp; 10 minutes ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Created&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; determined_colden       <br>e5e7005489a2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; khurram/pi:nano&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "/bin/bash"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6 hours ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Exited (0) 5 hours ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grave_pasteur       <br>5b62a2d14818&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resin/rpi-raspbian:jessie&nbsp;&nbsp; "/bin/bash"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6 hours ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Exited (0) 6 hours ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tiny_feynman       <br></font></p>      <p>As you can see; our Containers are also getting stored on the Host OS; think of it as the Working Directory in the source control; the server will have code images that we commit and working directory has currently working copy of source code; similarly docker images are the images of container that we committed and containers are the running (or stopped) copies, they also eats up the disk and we should remove the unwanted one; keeping an eye on STATUS we can learn which one we are not using anymore and can remove them using docker rm</p>      <p><font face="Courier New">pi&#64;raspberrypi:~ $ docker rm goofy_khorana      <br>goofy_khorana       <br>pi&#64;raspberrypi:~ $ docker rm aece7089082d       <br>aece7089082d</font></p>      <p>We dont always have to get the interactive shell on starting container; if we know what command to run when container is running; we can start our container in the background giving the command to run as parameter; lets create a new container for our Node application (as we have deleted the previously created one) from the Docker Image; something like this</p>      <p><font face="Courier New">pi&#64;raspberrypi:~ $ docker run -d -p 3000:3000 -v /home/pi/hello:/hello&nbsp;khurram/pi:node nodejs /hello/hello.js      <br>49b347531127cc1d6c07f9b266e9e146afa0c4214c3c13514b7a851a444c525e       <br>pi&#64;raspberrypi:~ $ docker ps -a       <br>CONTAINER ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NAMES       <br>49b347531127&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; khurram/pi:node&nbsp;&nbsp;&nbsp;&nbsp; "nodejs /hello/hello."&nbsp;&nbsp; 9 seconds ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Up 3 seconds&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.0.0.0:3000-&gt;3000/tcp&nbsp;&nbsp; stupefied_wing       <br>pi&#64;raspberrypi:~ $ curl </font><font face="Courier New">http://localhost/node</font>     <br><font face="Courier New">Hello World from NODE in Container      <br></font></p>    <h2>Restarting Container</h2>    <p>Now if we reboot the Raspberry; and give docker ps –a when it comes back; you will notice that our Container is not running anymore</p>      <p><font face="Courier New">pi&#64;raspberrypi:~ $ docker ps -a      <br>CONTAINER ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NAMES       <br>49b347531127&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; khurram/pi:node&nbsp;&nbsp;&nbsp;&nbsp; "nodejs /hello/hello."&nbsp;&nbsp; 2 minutes ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Exited (143) About a minute ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stupefied_wing</font></p>      <p>This can be taken care using –restart=always as the paramter to docker run; with this; even if our container exits unexpectedly; Docker will restart it; and also start it when machine boots (Docker Daemon gets started)</p>      <p><font face="Courier New">pi&#64;raspberrypi:~ $ docker run --restart=always -d -p 3000:3000 -v /home/pi/hello:/hello -it khurram/pi:node nodejs /hello/hello.js      <br>575b6cf68407fb08bf0fae895ea1170f5cbc02fba596f903c1901e17aa859747       <br>pi&#64;raspberrypi:~ $ curl </font><font face="Courier New">http://localhost/node</font>     <br><font face="Courier New">Hello World from NODE in Container      <br></font><font face="Courier New">pi&#64;raspberrypi</font><font face="Courier New">:~ $ sudo shutdown -r now</font></p>      <p>Using docker ps we can see that the second container that we started with restart=always is running on the boot!</p>      <p><font face="Courier New">pi&#64;raspberrypi:~ $ docker ps -a      <br>CONTAINER ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NAMES       <br>575b6cf68407&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; khurram/pi:node&nbsp;&nbsp;&nbsp;&nbsp; "nodejs /hello/hello."&nbsp;&nbsp; About a minute ago&nbsp;&nbsp; Up 4 seconds&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.0.0.0:3000-&gt;3000/tcp&nbsp;&nbsp; serene_mirz       <br>49b347531127&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; khurram/pi:node&nbsp;&nbsp;&nbsp;&nbsp; "nodejs /hello/hello."&nbsp;&nbsp; 6 minutes ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Exited (143) 5 minutes ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stupefied_w       <br>pi&#64;raspberrypi:~ $ curl </font><font face="Courier New">http://localhost/node</font>     <br><font face="Courier New">Hello World from NODE in Container</font></p>      <p>We can delete the previous container using docker rm, and if we want to protect the Container ports being exposed on Host; we can use iptables!</p>    <h2>Restarting Container on changing application files</h2>    <p>We know that we need to restart the node process when application files are changed. In this case; we simply can restart the Docker Container, it takes almost the same time.&nbsp;This can be done using docker restart command; but we need to "know"&nbsp;the container name at runtime so that we can use it in our post-receive GIT script; i-e when new code is “pushed” the GIT hook can restart the container. We can have a static known name&nbsp;for our container if we run the container with –name parameter</p>      <p><font face="Courier New">pi&#64;raspberrypi:~ $ docker ps -a     <br>CONTAINER ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NAMES      <br>575b6cf68407&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; khurram/pi:node&nbsp;&nbsp;&nbsp;&nbsp; "nodejs /hello/hello."&nbsp;&nbsp; 3 hours ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Up 3 hours&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.0.0.0:3000-&gt;3000/tcp&nbsp;&nbsp; serene_mirzakhani      <br>pi&#64;raspberrypi:~ $ docker stop 575b6cf68407      <br>575b6cf68407      <br>pi&#64;raspberrypi:~ $ docker rm 575b6cf68407      <br>575b6cf68407      <br>pi&#64;raspberrypi:~ $ docker run --restart=always --name hello -d -p 3000:3000 -v /home/pi/hello:/hello -it khurram/pi:node nodejs /hello/hello.js      <br>6774bc75b25e584b9f132bf78894a90789180d868c3176593b96e3f426db4118      <br>pi&#64;raspberrypi:~ $ curl </font><font face="Courier New">http://localhost/node</font>    <br><font face="Courier New">Hello World from NODE in Container     <br></font><font face="Courier New">pi&#64;raspberrypi</font><font face="Courier New">:~ $ docker restart hello     <br>hello      <br>pi&#64;raspberrypi:~ $ curl </font><font face="Courier New">http://localhost/node</font>    <br><font face="Courier New">Hello World from NODE in Container</font></p>      <p>We just need to add docker restart hello in hello.git/hooks/post-receive; similar to <a title="Staging Node Application" href="http://weblogs.com.pk/khurram/archive/2016/05/18/staging-node-application.aspx">Staging Node Application</a> where we added pm2 restart hello to restart the pm2 application</p>    <h2>Resources</h2>    <ul>     <li><a href="https://docs.docker.com/engine/reference/run/">https://docs.docker.com/engine/reference/run/</a> </li>        <li><a href="https://docs.docker.com/engine/userguide/containers/dockervolumes/">https://docs.docker.com/engine/userguide/containers/dockervolumes/</a> </li>        <li><a href="https://docs.docker.com/engine/userguide/networking/default_network/binding/">https://docs.docker.com/engine/userguide/networking/default_network/binding/</a> </li>        <li><a href="https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/">https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/</a> </li>        <li><a title="https://wiki.debian.org/iptables" href="https://wiki.debian.org/iptables">https://wiki.debian.org/iptables</a> </li>   </ul>      <p>Happy Containering!</p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

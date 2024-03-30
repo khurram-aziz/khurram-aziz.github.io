@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Dotnet Core - PostgreSQL</title>
+
+  <link rel="canonical" href='/posts/dotnetcore-postgresql'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Dotnet Core - PostgreSQL' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/dotnetcore-postgresql' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Dotnet Core - PostgreSQL
+          </h1>
+            <div class="meta">Published on Friday, March 31, 2017</div>
+              <div class="mt-3">
+                  <a href="/tags/net" class="badge text-bg-light"> .NET</a>
+                  <a href="/tags/asp.net" class="badge text-bg-light"> ASP.NET</a>
+                  <a href="/tags/databases" class="badge text-bg-light"> Databases</a>
+                  <a href="/tags/entity-framework" class="badge text-bg-light"> Entity Framework</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+          <p><img width="221" height="228" title="postgresql" align="right" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;float:right;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="postgresql" src="/images/Postreg_A12D/postgresql.png" border="0">      <b>Dotnet Core Series</b></p>  <ul>      <li><a href="dotnet-core.html" target="_blank">Dotnet Core</a></li>      <li><a href="redis-clients-asp-net-core.html" target="_blank">Redis Clients -- ASP.NET Core</a></li>      <li><a href="docker-registry.html" target="_blank">Docker Registry</a></li>      <li><a href="jenkins.html" target="_blank">Jenkins</a></li>      <li>This Post</li>  </ul>      <p>Given, Dotnet Core can run on Linux; and in the series we have been exploring different aspects of having a Microservice based Containerized Dotnet Core application running on a Linux in Docker Containers. SQL Server has been the defacto database for .NET application, there even exists <a href="https://www.microsoft.com/en-us/sql-server/sql-server-vnext-including-linux" target="_blank">SQL Server for Linux</a> (in a Public Preview form at the time of this post) and there is even an official image of <a href="https://hub.docker.com/r/microsoft/mssql-server-linux" target="_blank">SQL Server for Linux for Docker Engine</a> that we can use; and connect our existing beloved SQL Tools to connect to it; but it needs 3.25GB memory and its an evaluation version.</p>      <p><img width="1574" height="770" title="db-sqlserver-docker" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="db-sqlserver-docker" src="/images/Postreg_A12D/db-sqlserver-docker.jpg" border="0"></p>      <p><img width="469" height="480" title="db-pg-pgadmin" align="right" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;float:right;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="db-pg-pgadmin" src="/images/Postreg_A12D/db-pg-pgadmin.png" border="0">PostgreSQL is ACID compliant transactional object-relational database available for free on Windows, Linux and Mac. Its not as popular as mySQL; but it does provide serveral indexing functions, asynchronous commit, optimizer, synchronous and asynchronous replication that makes it technically more solid choice. Given its available for Windows; we can install it on the Windows development machines along with pgAdmin; the SQL Management Studio like client tool.</p>    <h1>Entity Framework Core</h1>    <p><a href="https://docs.microsoft.com/en-us/ef/core/" target="_blank">Entity Framework Core</a> is a cross platform data access technology for Dotnet Core. Its not EF 7 or EF6.x compatible; its developed from scratch and supports many database engines through <a href="https://docs.microsoft.com/en-us/ef/core/providers/index" target="_blank">Database Providers</a>. <a href="http://www.npgsql.org/" target="_blank">Npgsql</a> is an excellent .NET data provider for PostreSQL (<a href="https://github.com/npgsql" target="_blank">Their GitHub Repositories</a>) and it supports <a href="http://www.npgsql.org/efcore/index.html" target="_blank">EF Core</a>. All you need to do is install the <a href="https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL/" target="_blank">Npgsql.EntityFrameworkCore.PostgreSQL</a> NUGET package using the dotnet core CLI (dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL) It will bring along the EF Core and Npgsql libraries into your project.</p>      <p>We can now write our Entity classes and a DbContext class. For Npgsql, in OnConfiguring override, we will use UseNpgsql instead of UseSqlServer with DbContextOptionsBuilder passing on required PostgreSQL connection string. Here’s one entity class and context file I made for testing!</p>   <script src="https://gist.github.com/khurram-aziz/c64d07170b499a4794644ec1b9e2da20.js"></script>    <p>We can use the Context class with all the LINQ goodness; similar to SQL Server; for instance here’s the controller class</p>   <script src="https://gist.github.com/khurram-aziz/1952e3da90ec690414872e8613a0c17f.js"></script>    <p>And here’s displaying the products in the View</p>   <script src="https://gist.github.com/khurram-aziz/409d733938174a70e53cfdb818799611.js"></script>    <ul>     <li>If the entities are in different namespace; either import the namespace in the web.config file in the Views folder; or add the namespace in particular View by adding the using at the top <b>&#64;using ECommMvc.Models;</b> </li>   </ul>    <h1>Entity Framework Core Command Line Tools</h1>    <p><a href="https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet" target="_blank">EF Core .NET Command Line Tools</a> extends Dotnet CLI; and add ef commands to the dotnet (CLI) We need to add Microsoft.EntityFrameworkCore.Tools.Dotnet and Microsoft.EntityFrameworkCore.Design NUGET packages using dotnet add package NUGET; dotnet restore them and then add PackageReference using Design and DotnetCliToolReference using the Tools.Dotnet package; and you should end up having the dotnet ef commands in the project</p>      <p><img width="939" height="763" title="db-eftools" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="db-eftools" src="/images/Postreg_A12D/db-eftools.png" border="0"></p>      <p>Using the ef commands; we can add the Migration (dotnet ef migration add Migration-Name), remove it; update the database (dotnet ef database update) and more. Once we have the Migrations in place; we can continue to evolve our Entities and Database accordingly.</p>    <h1>Seeding</h1>    <p>Using the Migrations; we can Seed our database as well; we can create a Migration naming Seed; and add the required seeding code in the migration’s CS file</p>   <script src="https://gist.github.com/khurram-aziz/4e4588eb535e27cebd897acf7bb3601f.js"></script>    <p>When deploying into the Docker Container; we often need “side kick” container that “seeds” the cache or database (for details see <a href="http://weblogs.com.pk/khurram/archive/2017/01/04/dockerizing-php-mysql-application-part-2.aspx" target="_blank">Dockerizing PHP + MySQL Application Part 2</a>); as when container is started we get the clean slate. Given the Migrations code become part of the MVC project; and in .NET Core; there is a Program.cs the entry point where Kestrel / MVC is initialized; we can add more code there as well. We can use the Context that’s in place and Migrations and update the database (that will initialize and seed)</p>   <script src="https://gist.github.com/khurram-aziz/46c72fa948b1292da17f09cb8b5f2a52.js"></script>  <h1>Docker</h1>    <p>Now with database work in place and Docker building techniques shown in previous posts (<a title="Redis Clients -- ASP.NET Core" href="redis-clients-asp-net-core.html">Redis Clients -- ASP.NET Core</a> and <a title="Jenkins" href="jenkins.html">Jenkins</a>); we can have v2 Compose file or v3 Compose file (for Docker Swarm) and deploy our .NET Core MVC application that’s using Redis as Caching and PostgreSQL as Database into Docker Containers running on Linux node(s)</p>    <script src="//gist-it.appspot.com/github/khurram-aziz/HelloDotnetCore/blob/master/docker-compose.yml">    <ul>     <li></script>Project is available at <a title="https://github.com/khurram-aziz/HelloDotnetCore" href="https://github.com/khurram-aziz/HelloDotnetCore" target="_blank">https://github.com/khurram-aziz/HelloDotnetCore</a>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

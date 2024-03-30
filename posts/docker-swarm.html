@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Docker Swarm</title>
+
+  <link rel="canonical" href='/posts/docker-swarm'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Docker Swarm' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/docker-swarm' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Docker Swarm
+          </h1>
+            <div class="meta">Published on Tuesday, February 28, 2017</div>
+              <div class="mt-3">
+                  <a href="/tags/docker" class="badge text-bg-light"> Docker</a>
+                  <a href="/tags/linux" class="badge text-bg-light"> Linux</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+          <table cellspacing="0" cellpadding="0">        <tr>            <td style="width:300px;vertical-align:top;">                <p><b>ZooKeeper Series</b></p>                <ul>                    <li><a target="_blank" href="zookeeper.html">ZooKeeper</a></li>                    <li><a target="_blank" href="zookeeper-higher-level-constructs.html">Higher-level Constructs with ZooKeeper</a></li>                    <li>This Post</li>              </ul>          </td>            <td style="width:300px;vertical-align:top;">                <p><b>Docker Swarm Series</b></p>                <ul>                    <li>This Post</li>                    <li><a target="_blank" href="docker-registry.html">Docker Registry</a></li>                    <li><a target="_blank" href="jenkins.html">Jenkins</a></li>    <li><a target="_blank" href="swarm-and-prometheus.html">Swarm and Prometheus</a></li>  <li><a target="_blank" href="swarm-and-prometheus-ii.html">Swarm and Prometheus II</a></li>              </ul>          </td>      </tr>  </table>    <p><img title="swarm" style="border-top:0px;border-right:0px;background-image:none;border-bottom:0px;float:right;padding-top:0px;padding-left:0px;border-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;" alt="swarm" src="/images/422ca856ed3b_13E0F/swarm.png" border="0" height="295" align="right" width="300">Docker Swarm is native clustering for Docker. Before Docker Engine 1.12 (June 2016); it was a separate thing that turned the pool of docker hosts into a single virtual Docker host; and now since 1.12 its included and is part of Docker Engine and now called <a target="_blank" href="https://docs.docker.com/engine/swarm/">“Swarm Mode”</a>. We can use Docker CLI to create a swarm, deploy application services to a swarm and manage its behavior.</p>      <p><img title="architecture" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="architecture" src="/images/422ca856ed3b_13E0F/architecture.png" border="0" height="215" width="498"></p>      <p>For Swarm; we need to have multiple Docker Engines running on nodes; one or more node acts as Manager and then we add Workers into the Swarm. The quickest way to try it is to use <a target="_blank" href="https://github.com/docker/machine">docker-machine</a> and setup multiple Docker Engines across different Hosts or Virtual Machines. I have three VMs running Docker Engine v1.13. For these VMs; I used <a target="_blank" href="rancheros.html">RancherOS</a>; the tiny Linux distro ideal to run Docker Engine. I added them into my environment using Docker-Machine. Please note; RancherOS and Racher are seperate products; Rancher OS is the Linux distro and Rancher is Swarm like container management product. Rancher also supports using Swarm as its underlying clustering engine along with Cattle; its own; and Kubernetes and Mesos. But for this post we will remain committed to using Swarm using the Docker CLI and tools!</p>      <ul>     <li>I used the docker-machine’ <a target="_blank" href="https://docs.docker.com/machine/drivers/generic/">generic driver</a> to add the remote Docker Engines</li>        <li>RancherOS doesnt use Docker Engine 1.13 by default; but you can change the Docker Version using ros engine command; <a target="_blank" href="https://docs.rancher.com/os/configuration/switching-docker-versions">https://docs.rancher.com/os/configuration/switching-docker-versions</a> has the details</li>        <li>You can use docker-machine to create required VMs for Docker Engine; <a target="_blank" href="https://docs.docker.com/machine/get-started">https://docs.docker.com/machine/get-started</a> has the details         <ul>         <li>docker-machine has notion of drivers; it uses Virtual Box by default; you can use HyperV driver to create VMs; there are few gotchas and things are not as seamless as with Virtual Box; <a title="http://weblogs.com.pk/khurram/archive/2016/06/04/docker-on-windows.aspx" target="_blank" href="http://weblogs.com.pk/khurram/archive/2016/06/04/docker-on-windows.aspx">http://weblogs.com.pk/khurram/archive/2016/06/04/docker-on-windows.aspx</a> has the details </li>            <li>You can use RacnherOS to create Docker Engine VM; <a target="_blank" href="http://docs.rancher.com/os/running-rancheros/workstation/docker-machine">http://docs.rancher.com/os/running-rancheros/workstation/docker-machine</a> has the details </li>       </ul>     </li>   </ul>      <p><img title="docker-machine" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="docker-machine" src="/images/422ca856ed3b_13E0F/docker-machine.png" border="0" height="580" width="857"></p>      <p>To create a Swarm; we choose one machine as the Manager, set the Docker environment for that machine; and run docker swarm init; it will initialize the Swarm environment on that machine, make it a manager and outputs the docker CLI command that we can run on the other machines with which we can add them as as workers</p>      <ul>     <li>If the machine has more than one IP address; use docker swarm init –advertise-addr &lt;ManagerIP&gt;; <a title="https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/" target="_blank" href="https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/">https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/</a> for more information </li>   </ul>      <p><img title="docker-swarm" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="docker-swarm" src="/images/422ca856ed3b_13E0F/docker-swarm.png" border="0" height="485" width="1215"></p>      <ul>     <li><a target="_blank" href="https://docs.docker.com/engine/swarm/manage-nodes">https://docs.docker.com/engine/swarm/manage-nodes</a> to learn more about how to manage the nodes in a swarm </li>        <li><a target="_blank" href="https://docs.docker.com/engine/swarm/swarm-tutorial">https://docs.docker.com/engine/swarm/swarm-tutorial</a> for step by step tutorial </li>   </ul>      <p>Unlike Rancher; there is no GUI or web based interface to manage the Docker Swarm, but there are third party tools available; and mostly as containers that we can run on the underlying Docker Engines. <a target="_blank" href="https://github.com/ManoMarks/docker-swarm-visualizer">Docker Swarm Visualizer</a> is the popular one; <a target="_blank" href="http://portainer.io/overview.html">Portainer</a> is another!</p>    <p><img title="visualizer" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="visualizer" src="/images/422ca856ed3b_13E0F/visualizer.png" border="0" height="799" width="953"></p>      <p><img title="compose" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;float:right;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="compose" src="/images/422ca856ed3b_13E0F/compose.png" border="0" height="219" align="right" width="200">In Docker 1.13 (January 2017); they have added a <a target="_blank" href="docker-compose.html">docker-compose</a> support to the <a target="_blank" href="https://docs.docker.com/engine/reference/commandline/stack_deploy/">docker stack deploy</a> command so that services can be deployed using a docker-compose.yml file directly. They have also introduced <a target="_blank" href="https://docs.docker.com/compose/compose-file/">compose file</a> v3 format that has new options like deploy related to deployment and running of the services in a Swarm, labels to specify the labels to the services</p>      <p>Lets make a v3 compose file for our ZooKeeper; sadly for such application; where one node needs to know about the other; and every node need its own configuration; we have to define service for each node. Once we have the compose file; we deploy “the stack” using docker stack deploy –compose-file yml-file NameOfStack; we defined the deployment constraints; and the manager will deploy zoo1 service (single node) on swarm1, zoo2 on swarm2 and zoo3 on swarm3 node automatically</p>      <script src="//gist-it.appspot.com/github/khurram-aziz/HelloDocker/blob/master/Zoo/zoo-v3.yml"></script>    <ul>     <li>We can use, node.id, node.role (manager or worker) and node labels (node.labels.some-label) or engine labels (engine.labels.some-label) to define deployment constraints; <a title="https://github.com/docker/docker/pull/24397" target="_blank" href="https://github.com/docker/docker/pull/24397">https://github.com/docker/docker/pull/24397</a> has more information </li>        <li><a title="http://stackoverflow.com/questions/42062598/how-to-setup-zookeeper-cluster-on-docker-swarm" target="_blank" href="http://stackoverflow.com/questions/42062598/how-to-setup-zookeeper-cluster-on-docker-swarm">http://stackoverflow.com/questions/42062598/how-to-setup-zookeeper-cluster-on-docker-swarm</a>; a related question on Stack Overflow! </li>   </ul>      <p><img title="zookeeper" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="zookeeper" src="/images/422ca856ed3b_13E0F/zookeeper.png" border="0" height="973" width="1162"></p>      <p>We can list the services using docker service ls</p>      <p><img title="docker-service" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="docker-service" src="/images/422ca856ed3b_13E0F/docker-service.png" border="0" height="399" width="1046"></p>      <p>Hopefully such workarounds will not be required once Swarm and Compose get more matured!</p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

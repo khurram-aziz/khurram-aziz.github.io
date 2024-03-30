@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Higher-level Constructs with ZooKeeper</title>
+
+  <link rel="canonical" href='/posts/zookeeper-higher-level-constructs'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Higher-level Constructs with ZooKeeper' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/zookeeper-higher-level-constructs' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Higher-level Constructs with ZooKeeper
+          </h1>
+            <div class="meta">Published on Friday, February 17, 2017</div>
+              <div class="mt-3">
+                  <a href="/tags/net" class="badge text-bg-light"> .NET</a>
+                  <a href="/tags/databases" class="badge text-bg-light"> Databases</a>
+                  <a href="/tags/linux" class="badge text-bg-light"> Linux</a>
+                  <a href="/tags/visual-studio" class="badge text-bg-light"> Visual Studio</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <p><b>ZooKeeper Series</b></p>    <ul>       <li><a href="zookeeper.html" target="_blank">ZooKeeper</a></li>    <li><a href="zookeeper-higher-level-constructs.html" target="_blank">Higher-level Constructs with ZooKeeper</a></li>    <li><a href="docker-swarm.html" target="_blank">Docker Swarm</a></li>  </ul>    <p>ZooKeeper provides a solid foundation to implement higher order functions required for “Clustering Applications” / Distributed Systems. In this post; we will implement “Barrier” that Distributed systems uses to block processing of a set of nodes until a condition is met at which time all the nodes are allowed to proceed. Barriers are implemented in ZooKeeper by designating a barrier node. The barrier is in place if the barrier node exists. For the modern scalable applications; often we don't know how many nodes are participating; this is something that is decided at the runtime and is expected to be changeable when required. If there is more load on the applications; we should have an option to add more nodes to meet the demand. In such scenarios; its important to know at runtime how many nodes are participating so each node wait at barrier accordingly and also an option of node enrollment is required so we allow some time to nodes to come online / participate and then calculate how many nodes will participate in the barrier!</p>      <p>To keep things interesting; we will be implementing a proof of concept in Dotnet Core; and given Dotnet Core applications can be run in Linux; we will use Docker to run ZooKeeper as well as our Core CLR nodes. For the sake of simplicity; we will use single instance of ZooKeeper and run all the nodes as separate Docker containers on a single host machine. We can deploy the containers across multiple machines using Rancher, Swarm or Kubernetes etc. You can check out <a href="rancher-first-application.html" target="_blank">Rancher—First Application</a> post on how to deploy the Docker application across multiple hosts. We will use <a href="http://weblogs.com.pk/khurram/archive/2009/10/23/net-4-barrier-class.aspx" target="_blank">Barrier example</a> from Visual Studio 2010 Training Kit and re implement accordingly.</p>      <p>Here’s the modified DriveToBoston() function that’s using Barrier helper class that we will write. We will pass-on the ZooKeeper connection string to it in the constructor and it will have EnrollIntoBarrier, GetParticipantCount, ReachBarrier and WaitAtBarrier functionalities. Given containers takes random times to come online based on the host resources and what’s in the container; we are simulating it as “Decision Time”; this is also important given ZooKeeper takes couple of seconds to start accepting connection; similar to any other database. “Roll Time” is simulating the wait time to allow participating nodes to join; “Time To Gas Station” is from the Training Kit example and is simulating the different time nodes will take to reach barrier; where they will sync and proceed.</p>     <div style="overflow:auto;border-top:gray 0.1em solid;border-right:gray 0.1em solid;width:auto;background:#ffffff;border-bottom:gray 0.1em solid;padding-bottom:0.2em;padding-top:0.2em;padding-left:0.6em;border-left:gray 0.8em solid;padding-right:0.6em;">     <pre style="margin:0px;line-height:125%;"><span style="font-weight:bold;color:#008800;">static</span> <span style="font-weight:bold;color:#008800;">void</span> <span style="font-weight:bold;color:#0066bb;">DriveToBoston</span>(<span style="font-weight:bold;color:#333399;">string</span> connectionString, <span style="font-weight:bold;color:#333399;">string</span> name, TimeSpan timeToLeaveHome, TimeSpan timeToRoll, TimeSpan timeToGasStation)  {      <span style="font-weight:bold;color:#008800;">try</span>      {          Console.WriteLine(<span style="background-color:#fff0f0;">"[{0}] Leaving house"</span>, name);          Thread.Sleep(timeToLeaveHome); <span style="color:#888888;">//let zookeeper come online and decision time</span>          <span style="font-weight:bold;color:#333399;">var</span> barrier = <span style="font-weight:bold;color:#008800;">new</span> Barrier(connectionString);          <span style="font-weight:bold;color:#333399;">bool</span> envrolled = barrier.EnrollIntoBarrierAsync(timeToRoll, name).Result;          <span style="font-weight:bold;color:#008800;">if</span> (!envrolled)          {              Console.Write(<span style="background-color:#fff0f0;">"[{0}] Couldnt join the caravan!"</span>, name);              <span style="font-weight:bold;color:#008800;">return</span>;          }          Console.WriteLine(<span style="background-color:#fff0f0;">"[{0}] Going to Boston!"</span>, name);          <span style="font-weight:bold;color:#333399;">int</span> participants = barrier.GetParticipantCountAsync().Result;          Console.WriteLine(<span style="background-color:#fff0f0;">"[{0}] Caravan has {1} cars!"</span>, name, participants);          <span style="color:#888888;">// Perform some work</span>          Thread.Sleep(timeToGasStation);          <span style="font-weight:bold;color:#333399;">object</span> o = barrier.ReachBarrierAsync(name).Result;          Console.WriteLine(<span style="background-color:#fff0f0;">"[{0}] Arrived at Gas Station"</span>, name);          <span style="color:#888888;">// Need to sync here</span>          barrier.WaitAtBarrier(participants);          <span style="color:#888888;">// Perform some more work</span>          Console.WriteLine(<span style="background-color:#fff0f0;">"[{0}] Leaving for Boston"</span>, name);      }      <span style="font-weight:bold;color:#008800;">catch</span> (Exception ex)      {          Console.WriteLine(<span style="background-color:#fff0f0;">"[{0}] Caravan was cancelled! Going home!"</span>, name);          Console.WriteLine(ex);      }  }</pre>  </div>    <p>For the Barrier Helper; we will be using /dotnetcoreapp as the application root node in the ZooKeeper; and /dotnetcoreapp/barrier as the Barrier node. Our Barrier node has two children; participants and reached. All these nodes are Persistent. Each node will create a child node under /dotnetcoreapp/barrier/participants node when enrolling itself; and after a roll time; we will count number of children to determine the number of participants. And when the processing will start; each node will report itself when it will reach barrier by creating a node under /dotnetcoreapp/barrier/reached. When children under reached node becomes equal to the number of participant each node will get sync and proceed with any further processing.</p>    <p>We will use “watcher” functionality that ZooKeeper provides to watch the reached node; the watch will get triggered whenever there is any change; a new child is created.</p>    <p>One of the most interesting things about ZooKeeper is that even though ZooKeeper uses asynchronous notifications, we can use it to build synchronous consistency primitives. We will use this for the roll call situation. After a roll call time out; the node will create /dotnetcoreapp/barrier/rollcomplete; each node will first check its existance; if its not there; will enroll itself; and then check again for its existance and if its there; will check the Czxid of the two nodes; the create zookeeper transaction id; and as ZooKeeper stamps all the node in sequential way; if rollcomplete id is less than the node’s enrollment node id; it means node failed to get itself enrolled before roll get completed.</p>    <p>Here’s the code of our Barrier helper class</p>  <script src="//gist-it.appspot.com/github/khurram-aziz/HelloDocker/blob/master/Zoo/Barrier.cs"></script>    <ul>      <li>ZooKeeper exists() api returns the Stat structure that we can use to determine number of children easily </li>        <li>All the Zookeeper nodes created by nodes for participation and reporting itself for eaching barrier are Ephemeral; they will get deleted automatically when node will disconnect from the Zookeeper server </li>  </ul>    <p>The code of the Dotnet Core project is available at <a title="https://github.com/khurram-aziz/HelloDocker/tree/master/Zoo" href="https://github.com/khurram-aziz/HelloDocker/tree/master/Zoo">https://github.com/khurram-aziz/HelloDocker/tree/master/Zoo</a>; you can clone the code and then run dotnet restore to restore the used packages including the ZooKeeper Client library. We will run three docker containers of this app providing different parameters to simulate the Training Kit example. To build the container image of our application; first run dotnet publish –c Release –o out to build + publish the release confiiguration of our app into the “out” folder; and then use this <a href="dockerfile.html" target="_blank">Dockerfile</a> to build the container image</p>  <script src="//gist-it.appspot.com/github/khurram-aziz/HelloDocker/blob/master/Zoo/Dockerfile"></script>    <p><img width="1118" height="411" title="zoo-dotnet-publish" style="border-top:0px;border-right:0px;background-image:none;border-bottom:0px;padding-top:0px;padding-left:0px;border-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;" alt="zoo-dotnet-publish" src="/images/Higher-Order-Functions_D256/zoo-dotnet-publish.png" border="0"></p>    <p>We can use <a href="docker-compose.html" target="_blank">docker-compose</a> to run the ZooKeeper and the instances of our Dotnet Core for simulation. Here’s the YML file that simulating the three nodes as per Training Kit original example </p>  <script src="http://gist-it.appspot.com/github/khurram-aziz/HelloDocker/blob/master/Zoo/docker-compose.yml"></script>    <ul>      <li>I have specified the dockerfile for the Dotnet Core application; we can use docker-compose up –build (dash dash build) and it will build and run the containers with single command</li>        <li>Also note that dennis node parameters are such that they will not be able to join the “caravan” given its taking too much time to decide and by that time; enrollment gets complemented</li>  </ul>    <p>If everything goes smoothly; you will see an output similar to this</p>    <blockquote>      <p><font face="Courier New">…        <br>mac_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | [Mac] Leaving house        <br>dennis_1&nbsp;&nbsp; | [Dennis] Leaving house        <br>charlie_1&nbsp; | [Charlie] Leaving house        <br>…        <br>mac_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | [Mac] Going to Boston!        <br>mac_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | [Mac] Caravan has 2 cars!        <br>charlie_1&nbsp; | [Charlie] Going to Boston!        <br>charlie_1&nbsp; | [Charlie] Caravan has 2 cars!        <br>…        <br>dennis_1&nbsp;&nbsp; | [Dennis] Couldnt join the caravan!zoo_dennis_1 exited with code 0        <br>…        <br>charlie_1&nbsp; | [Charlie] Arrived at Gas Station        <br>mac_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | [Mac] Arrived at Gas Station        <br>charlie_1&nbsp; | [Charlie] Leaving for Boston        <br>mac_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | [Mac] Leaving for Boston        <br>…        <br>zoo_mac_1 exited with code 0        <br>zoo_charlie_1 exited with code 0        <br>…</font></p>  </blockquote>    <p><img width="622" height="724" title="zoo-docker-compose" style="border-top:0px;border-right:0px;background-image:none;border-bottom:0px;padding-top:0px;padding-left:0px;border-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;" alt="zoo-docker-compose" src="/images/Higher-Order-Functions_D256/zoo-docker-compose.png" border="0"></p>    <p>We can create other higher order constructions; in the ZooKeeper; its called ZooKeeper Recipes; their pseudo codes are discussed at <a title="https://zookeeper.apache.org/doc/trunk/recipes.html" href="https://zookeeper.apache.org/doc/trunk/recipes.html" target="_blank">https://zookeeper.apache.org/doc/trunk/recipes.html</a>; some of these recipes are available in their official Java client library and given the <a href="https://github.com/shayhatsor/zookeeper" target="_blank">Apache ZooKeeper .NET async client</a> library we are using is based on the Java client library; they have also made available <a href="https://www.nuget.org/packages/ZooKeeperNetEx.Recipes" target="_blank">ZooKeeperNetEx.Recipes nuget package</a> that we can use. Leader Election and Queue are available in there.</p>    <p>Happy Containering / Clustering / Distributing your app!</p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

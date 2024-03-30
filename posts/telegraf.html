@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Telegraf</title>
+
+  <link rel="canonical" href='/posts/telegraf'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Telegraf' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/telegraf' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Telegraf
+          </h1>
+            <div class="meta">Published on Saturday, June 23, 2018</div>
+              <div class="mt-3">
+                  <a href="/tags/observability" class="badge text-bg-light"> Observability</a>
+                  <a href="/tags/system-administration" class="badge text-bg-light"> System Administration</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <p><img width="611" height="480" align="right" style="margin:10px 10px 0px 0px;float:right;display:inline;" src="/images/0af903c6ed63_A51F/Tick-Stack-Complete.png">  <p><b>TICK Series</b></p><ul>             <li><a href="influxdb.html">InfluxDB</a></li>  <li>This Post</li></ul><p>Telegraf is the daemon written in Go for collecting, processing, aggregating and writing metrics. It has plugins through which it offers integrations to variety of metric sources. It can pull the metrics from third-party APIs as well and can even listen for metrics via StatsD and Kafka consumer services. It then inserts the collected metrics to InfluxDB and can even push collected metrics data into Graphite, Kafka, MQTT and many others through its output plugins. It also has processor plugins through which we can transform, decorate and filter the collected metrics and we can also aggregate these collected metrics using the aggregator plugins. There are over hundred of these four types of plugins and one can write ones own; these plugins make Telegraf very extendable.</p>  <p>Visit <a title="https://github.com/influxdata/telegraf" href="https://github.com/influxdata/telegraf" target="_blank">https://github.com/influxdata/telegraf</a> for the complete list of plugins. For this post; I am going to use <a href="https://github.com/influxdata/telegraf/tree/master/plugins/inputs/snmp" target="_blank">SNMP</a> plugin. We will be polling Temperature and Network Interface Traffic from Mikrotik Routerboards. Simple Network Management Protocol (SNMP) is an Internet Standard protocol for collecting and organizing information about managed devices on IP networks and for modifying that information to change device behavior. SNMP uses an extensible design which allows applications to define their own hierarchies. These hierarchies, are described as a management information base (MIB). MIBs describe the structure of the management data of a device subsystem; they use a hierarchical namespace containing object identifiers (OID). Each OID identifies a variable that can be read or set via SNMP. We will not be using MIBs; we can use official <a href="https://hub.docker.com/_/telegraf" target="_blank">Telegraf Docker Image</a> as is; otherwise one need to install SNMP-MIBs in the container. The Telegraf SNMP plugin supports both the SNMP-GET and SNMP-WALK. We can retrieve one or more values using SNMP-GET and can use these retrieved values as tags with GET (Field) or WALK (Table) metrices. We will be retrieving the device host name and use it as a tag with temperature as well as interface metrices</p>  <p>Mikrotik Routerboard OS has two temperature OIDs; one for the sensor in its chassis and the other for its CPU temperature. The bandwidth interface information can be retreived by walking the well known OIDs for interface names, their bytes in and out counters. These SNMP configurations are made in the telegraf.conf file�s [[input.snmp]] sections. In the configuration files� [output] section we specify where we want to push the retrieved metrices. Lets create a telegraf.conf file and add Telegraf service into our Docker Compose file we created in InfluxDB post</p>  <ul>   <li>All required files are available in Tick folder &#64; <a title="https://github.com/khurram-aziz/HelloDocker" href="https://github.com/khurram-aziz/HelloDocker">https://github.com/khurram-aziz/HelloDocker</a></li>    <li>If you are new to Docker / Docker-Compose; visit <a title="docker-compose.html" href="docker-compose.html" target="_blank">docker-compose.html</a></li> </ul>  <p><a href="/images/Telegraf_B8C5/docker-compose_3.png"><img width="597" height="480" title="docker-compose" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="docker-compose" src="/images/Telegraf_B8C5/docker-compose.png" border="0">       <br></a><a href="/images/Telegraf_B8C5/telegraf-conf_3.png"><img width="513" height="480" title="telegraf-conf" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="telegraf-conf" src="/images/Telegraf_B8C5/telegraf-conf.png" border="0"></a></p>  <ul>   <li>We are retrieving values from multiple SNMP agents each 60seconds</li>    <li>The measurement will be named �rb� for the fields and rb-interfaces for the table</li>    <li>�rb� measurement will have two temperature values</li>    <li>�rb-interfaces� will have the in/out counter values; the retrieved interface name will be used as tag</li>    <li>The hostname of the device will be used as tag in both measurements</li> </ul>  <p>Running docker-compose up; we can bring our setup online and after a while; we should be able to see the measurements that Telegraf is pushing to InfluxDB�s telegraf database in the Chronograf. If you are not following �TICK series� posts and has landed on this post directly; please refer to <a href="influxdb.html" target="_blank">InfluxDB</a> post for details on InfluxDB and Chronograf</p>  <p><a href="/images/Telegraf_B8C5/chronograf_3.png"><img width="640" height="476" title="chronograf" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="chronograf" src="/images/Telegraf_B8C5/chronograf.png" border="0"></a></p>  <ul>   <li>Notice that Telegraf has also added agent-host label with the IP value of the SNMP Agent</li>    <li>The values need to divide by 10 to get the temperature in Celsius; Router OS is doing this so it can give out the fraction part using INTEGER data type through SNMP</li> </ul>  <p>In the Docker Compose; we exposed/mapped the InfluxDB HTTP port; we can run the InfluxDB queries from the host directly using CURL etc to debug/see what�s going on</p>  <p><a href="/images/Telegraf_B8C5/influxdb_3.png"><img width="498" height="480" title="influxdb" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="influxdb" src="/images/Telegraf_B8C5/influxdb.png" border="0"></a></p>  <p>Interestingly; Telegraf has a <a href="https://github.com/influxdata/telegraf/tree/master/plugins/outputs/prometheus_client" target="_blank">Prometheus Client Service Output</a> plugin with which we can use it with Prometheus. Prometheus is based on pull model; this plugin starts the HTTP listener where it publishes the retrieved metrices and from where Prometheus can pull. To set it up; lets configure the plugin in telegraf.conf�s output section, bring in Prometheus configuring it to poll from the plugin endpoint. When we will bring things online; Telegraf will start pushing the metrics to InfluxDB as well as make them available at the Prometheus Client endpoint from where Prometheus will start polling accordingly</p>  <p><img width="1301" height="588" title="prometheus" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="prometheus" src="/images/Telegraf_B8C5/prometheus.png" border="0"></p>  <p>Once the data is in Prometheus; we can even bring Grafana and can start making Grafana dashboards.</p>  <ul>   <li>Refer to <a title="Prometheus" href="prometheus.html" target="_blank">Prometheus</a> blog post for more information</li> </ul>  <p><a href="/images/Telegraf_B8C5/prometheus-graph_3.png"><img width="640" height="433" title="prometheus-graph" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="prometheus-graph" src="/images/Telegraf_B8C5/prometheus-graph.png" border="0"></a><a href="/images/Telegraf_B8C5/grafana_3.png"><img width="527" height="480" title="grafana" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="grafana" src="/images/Telegraf_B8C5/grafana.png" border="0"></a></p>  <p>I like Telegraf with its SNMP plugin more than Prometheus� SNMP-Exporter and having Telegraf in the environment opens up and enables more possibilities. Grafana also supports InfluxDB and we can have the dashboards using both Prometheus and InfluxDB as Time series data sources. While graphing Bandwidth COUNTERs from SNMP in Grafana, you will need to use Prometheus� rate() function and InfluxDB�s derivative() function.</p>  <ul>   <li>The rate() function calculates the per second average rate of increase of the time series in the range vector given as parameter; below it will give the average rate of increase in 5min. The counter resets are automatically get adjusted</li>    <li>The derivative() function returns the rate of change between the subsequent field values and converts the results into the rate of change per unit; given as second parameter; below given we need /sec rate of the bandwidth we are giving 1s as the second parameter</li> </ul>  <p>The InfluxDB derivative() function seems more close to how classic RRD/MRTG graph the bandwidth counters</p>  <p><a href="/images/Telegraf_B8C5/grafana-prometheus_3.png"><img width="492" height="480" title="grafana-prometheus" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="grafana-prometheus" src="/images/Telegraf_B8C5/grafana-prometheus.png" border="0"></a><a href="/images/Telegraf_B8C5/grafana-influxdb_3.png"><img width="457" height="480" title="grafana-influxdb" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="grafana-influxdb" src="/images/Telegraf_B8C5/grafana-influxdb.png" border="0"></a></p>  <ul>   <li>Note that Grafana offers a rich InfluxDB query editor; and if you want to can switch to text mode where you can write InfluxDB queries directly</li>    <li>Note that writing InfluxDB queries can become cumbersome for system administrators; they will like Prometheus more while developers might find InfluxDB more powerful and feel comfortable due to its RDBMS like queries</li> </ul>  <p>If you want to; you can remove Chronograf and even InfluxDB, and can use Telegraf directly with Prometheus / Grafana setup, or you can use Grafana with InfluxDB and not use Chronograf for dashboards. Its totally your preference!</p>  <ul>   <li>Docker compose, container configuration and all other required files are available in Tick folder &#64; <a title="https://github.com/khurram-aziz/HelloDocker" href="https://github.com/khurram-aziz/HelloDocker">https://github.com/khurram-aziz/HelloDocker</a></li> </ul></p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Beats</title>
+
+  <link rel="canonical" href='/posts/beats'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Beats' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/beats' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Beats
+          </h1>
+            <div class="meta">Published on Thursday, July 4, 2019</div>
+              <div class="mt-3">
+                  <a href="/tags/observability" class="badge text-bg-light"> Observability</a>
+                  <a href="/tags/system-administration" class="badge text-bg-light"> System Administration</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <p ilm_enabled="&amp;gt;" auto=""><b><img title="image" style="margin:10px 10px 0px 0px;float:right;display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image.png" width="619" align="right" height="421" />Elasticsearch Series</b>   <ul>   <li><a href="elk.html">ELK</a></li>    <li><a href="kibana.html">Kibana: DevTools</a></li>    <li>This Post</li> </ul>  <p>Beats is Elastic� platform for data shippers. From previous posts we know that Elasticsearch and Logstash are servers and we can send data (usually time series data) to them. If data needs some input/filter/output parsing Logstash is there or else we can submit data directly to Elasticsearch. Beats are single-purpose data shippers that we can deploy on systems / machines / containers acting as clients for either Logstash or Elasticsearch � and then centralize data either directly to Elasticsearch or through Logstash. There are different beats available like <a href="https://www.elastic.co/products/beats/filebeat" target="_blank">Filebeat</a> that can harvest files and is mostly used to feed log files into Elasticsearch, <a href="https://www.elastic.co/products/beats/winlogbeat" target="_blank">Winlogbeat</a> that can read from Windows� event log channels and ship the event data into the Elasticsearch� structured indexes, <a href="https://www.elastic.co/products/beats/metricbeat" target="_blank">Metricbeat</a> that can collect CPU, memory and other system metrics and can log statistics into Elasticsearch and <a href="https://www.elastic.co/products/beats/packetbeat" target="_blank">Packetbeat</a> can monitor network services using different network protocols and can record application latency, response times, SLA performances and user access patterns etc</p>  <p>Beats are &quot;lightweight&quot; and easy to deploy; they are developed using Go; so there is just a binary along with its configuration file to deploy and have no external dependencies; ideal for container deployment and use limited system resources.</p>  <ul>   <li>Take a look at <a href="https://www.elastic.co/products/beats" target="_blank">https://www.elastic.co/products/beats</a> for complete first party Beats list</li> </ul>  <h1>Modules and libbeat</h1>  <p>Many beats come with modules / plugins to help it collect and parse/filter data; for instance Filebeat comes with Apache, IIS, Nginx, MySQL, PostgreSQL, Redis, Netflow, Cisco and many others; using these it can harvest relevant log files; for example using IIS module we can feed IIS log files into Logstash or Elasticsearch. Winlogbeat comes with Sysmon Module. Sysinternals� System Monitor utility service that log system activity events into its own event log channel that Winlogbeat can then process.</p>  <p>Beats are open source and code is available on Github; all the Beats uses libbeat; a Go framework from Elastic to create Beats. All the official Beats uses it that makes all of them to feel and work in consistent and uniform way; for instance for configuration they all use YML files and now with v7.2 releases that can run Javascript code to process events and transform data �at the edge� (industrial buzz). The beats modules also uses this same Javascript option for instance Winlogbeat�s Sysmon module is configured like this:</p>  <p><img title="image" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_3.png" width="569" height="140" /></p>  <p>There are many open source beats from community using this same libbeat; for example MQTTBeat (<a title="https://github.com/nathan-K-/mqttbeat" href="https://github.com/nathan-K-/mqttbeat" target="_blank">https://github.com/nathan-K-/mqttbeat</a>) can be quite useful in IoT implementation. It can read MQTT topics and can save messages into Elasticsearch (or process them through Logstash). HttpBeat (<a href="https://github.com/christiangalsterer/httpbeat" target="_blank">https://github.com/christiangalsterer/httpbeat</a>) call http endpoints (POST/GET requests at URLs etc) at specified intervals and can record JSON outputs and HTTP server metrics. HttpBeat is now a Http module of Metricbeat</p>  <ul>   <li>Take a look at <a href="https://www.elastic.co/guide/en/beats/libbeat/master/index.html" target="_blank">https://www.elastic.co/guide/en/beats/libbeat/master/index.html</a> for libbeat reference, <a href="https://www.elastic.co/guide/en/beats/libbeat/master/community-beats.html" target="_blank">https://www.elastic.co/guide/en/beats/libbeat/master/community-beats.html</a> for the community beats and <a href="https://github.com/elastic/beats" target="_blank">https://github.com/elastic/beats</a> for libbeat Go framework code/library</li> </ul>  <h1>Index Lifecycle Management</h1>  <p>By default the Beats creates indexes for each day, the beat name followed by its version and then the date; for instance Filebeat will create following indexes:</p>  <p><a href="/images/Beats_9B7B/image_4.png"><img title="image" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_thumb.png" width="582" height="311" /></a></p>  <p>Version 6.6.0 the Elastic stack introduced Index Lifecycle Management; ILM; using this feature in Elasticsearch we can manage indices as they age. For example, instead of creating daily indices where index size can vary based on the number of Beats and number of events sent, use an index lifecycle policy to automate a rollover to a new index when the existing index reaches a specified size or age. From v7 releases, Beats now uses ILM by default when it connects to Elasticsearch that supports life cycle management, Beats create their default policy automatically in the Elasticsearch and applies it to any indices created by them. We can then view and edit the policy in the Index lifecycle policies User interface in Kibana.</p>  <p><img title="image" style="display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_5.png" width="628" height="484" /></p>  <p>We can change this behaviour by changing elasticsearch  to true or false in Beat�s configuration�s output section</p>  <ul>   <li>Take a look at <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html" target="_blank">https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html</a> for more information</li> </ul>  <h1>Elastic Common Schema</h1>  <p>Beats gather the logs and metrics from your unique environments and document them with essential metadata from hosts. Here is an example of Filebeat entry.</p>  <p><img title="image" style="display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_6.png" width="620" height="484" /></p>  <p>Elastic Common Schema (ECS) is  a specification that provides a consistent and customizable way to structure the data in Elasticsearch, facilitating the analysis of data from diverse sources. With ECS, analytics content such as dashboards and machine learning jobs can be applied more broadly, searches can be crafted more narrowly, and field names are easier to remember. Imagine searching for a specific user within data originating from multiple sources. Just to search for this one field, you would likely need to account for multiple field names, such as user, username, nginx.access.user_name, and login. Implementing ECS unifies all modes of analysis available in the Elastic Stack, including search, drill-down and pivoting, data visualization, machine learning-based anomaly detection, and alerting. When fully adopted, users can search with the power of both unstructured and structured query parameters. It is an open source specification available at <a title="https://github.com/elastic/ecs" href="https://github.com/elastic/ecs" target="_blank">https://github.com/elastic/ecs</a> that defines a common set of document fields for data ingested into Elasticsearch.</p>  <ul>   <li>Take a look at <a title="https://www.elastic.co/guide/en/ecs/current/index.html" href="https://www.elastic.co/guide/en/ecs/current/index.html" target="_blank">https://www.elastic.co/guide/en/ecs/current/index.html</a> and read <a href="https://www.elastic.co/blog/introducing-the-elastic-common-schema" target="_blank">https://www.elastic.co/blog/introducing-the-elastic-common-schema</a> for more information.</li> </ul>  <p>Starting with version 7.0, all Beats and Beats modules generate ECS format events by default. This means adopting ECS is as easy as upgrading to Beats 7.0. All Beats module dashboards are already modified to make use of ECS.</p>  <ul>   <li>For more information about v7 Beats release read <a href="https://www.elastic.co/blog/beats-7-0-0-released" target="_blank">https://www.elastic.co/blog/beats-7-0-0-released</a></li> </ul>  <h1>Dashboards</h1>  <p>If we run the beat with �help; we will often see �setup� option that creates the index template (that we see in the previous post are used to define fields and configure how the new indexes will be created), Machine Learning Job (if you have X-Pack the commercial addon from Elastic) and Dashboards. Beats can access Kibana if you have specified its location in their configuration file and create Kibana Index Patterns, Visualization and Dashboards</p>  <p><img title="image" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_7.png" width="647" height="441" /></p>  <p>For example running winlogbeat setup will create the Index Patterns, Visualizations and Dashboard (if we have Kibana URL in its configuration YML file)</p>  <p><a href="/images/Beats_9B7B/image_8.png"><img title="image" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_thumb_3.png" width="644" height="341" /></a><a href="/images/Beats_9B7B/image_9.png"><img title="image" style="display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_thumb_4.png" width="506" height="96" /></a></p>  <p>We can view the Visualizations and Dashboards in Kibana (and learn how they have made it and use this learning to create Visualizations and Dashboards for our other data that we are pushing into Elasticsearch)</p>  <p><a href="/images/Beats_9B7B/image_10.png"><img title="image" style="display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_thumb_5.png" width="501" height="484" /></a><img title="image" style="display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_11.png" width="644" height="271" /></p>  <ul>   <li>Note that I am using v7x Winlogbeat and its using ECS and has created Visualization and Dashboards with ECS in name to avoid clash from v6x and earlier Winlogbeat that you might have</li> </ul>  <h1>Debugging and Service Installation</h1>  <p>Using beat test we can test the configuration; for example winlogbeat test config we can test the configuration file and using winlogbeat test output we can ensure Elasticsearch is accessible.</p>  <p><img title="image" style="display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_12.png" width="521" height="211" /></p>  <p>We can run the Beats interactively using its binary; it will report any error on the console and we can fix it accordingly. Once everything is in order; we can install the Beat (Winlogbeat, Filebeat or other); the Beats usually comes with instruction or scripts to do this; for instance Winlogbeat comes with Powershell script to install / uninstall it as Windows Service.</p>  <p><a href="/images/Beats_9B7B/image_13.png"><img title="image" style="display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_thumb_6.png" width="951" height="340" /></a></p> <a href="/images/Beats_9B7B/image_14.png"><img title="image" style="margin:10px 10px 0px 0px;float:right;display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_thumb_7.png" width="644" align="right" height="240" />    <br /></a>  <h1>Kibana and X-Pack</h1>  <p>Recent versions of Kibana now has dedicated appplications for some Beats, for instance there is Uptime application that works with Hearbeat, Logs that work with Filebeat and SIEM (Security Information &amp; Event Management)</p>  <p>Elastic SIEM is being introduced as a beta in the 7.2 release of the Elastic Stack. SIEM Kibana application is an interactive workspace for security teams to triage events and perform initial investigations. It enables analysis of host-related and network-related security events as part of alert investigations. With its Timeline Event Viewer the analysts can gather and store evidence of an attack, pin and annotate relevant events, and comment on and share their findings. It uses the data that follows the ECS format being pushed by Auditbeat, Filebeat, Winlogbeat and Packetbeat (in its first release)</p>  <ul>   <li>Read <a href="https://www.elastic.co/blog/introducing-elastic-siem" target="_blank">https://www.elastic.co/blog/introducing-elastic-siem</a> for more information on Elastic SIEM</li> </ul>  <p><a href="/images/Beats_9B7B/image_15.png"><img title="image" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="image" src="/images/Beats_9B7B/image_thumb_8.png" width="644" height="321" /></a></p>  <p>Elastic used to offer Sheild, Watcher and Marvel commercial plugins that adds features like Security and Alerting to ELK setup. They then merged these products into X-Pack which is an Elastic Stack extension that bundles security, alerting, monitoring, reporting, and graph capabilities into one easy-to-install package. While the X-Pack components are designed to work together seamlessly, you can easily enable or disable the features you want to use. Note that this is a commercial product and they in <a href="https://www.elastic.co/blog/doubling-down-on-open" target="_blank">early 2018 they announced</a> opening the code of X-Pack features - security, monitoring, alerting, graph, reporting, dedicated APM UIs, Canvas, Elasticsearch SQL, Search Profiler, Grok Debugger, Elastic Maps Service zoom levels, and machine learning. Many of these new additions in Kibana are result of this and at the same time they are also adding new Kibana applications like SIEM. So its best to keep updating your ELK setup to avail all these new features.     </p></p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

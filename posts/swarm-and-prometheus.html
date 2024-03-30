@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Swarm and Prometheus</title>
+
+  <link rel="canonical" href='/posts/swarm-and-prometheus'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Swarm and Prometheus' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/swarm-and-prometheus' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Swarm and Prometheus
+          </h1>
+            <div class="meta">Published on Saturday, April 21, 2018</div>
+              <div class="mt-3">
+                  <a href="/tags/docker" class="badge text-bg-light"> Docker</a>
+                  <a href="/tags/observability" class="badge text-bg-light"> Observability</a>
+                  <a href="/tags/system-administration" class="badge text-bg-light"> System Administration</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+          <table cellspacing="0" cellpadding="2">       <tr>         <td style="width:300px;vertical-align:top;">           <p><b>Prometheus Series</b></p>  <ul>             <li><a target="_blank" href="prometheus.html">Prometheus</a></li>  <li>This Post</li>  <li><a target="_blank" href="swarm-and-prometheus-ii.html">Swarm and Prometheus II</a></li>  </ul>  </td>            <td style="width:300px;vertical-align:top;">    <p><b>Time Series Databases</b></p>  <ul>    <li><a target="_blank" href="prometheus.html">Prometheus</a></li>    <li><a target="_blank" href="influxdb.html">InfluxDB</a></li>  </ul>  </td>    <td style="width:300px;vertical-align:top;">           <p><b>Docker Swarm Series</b></p>  <ul>             <li><a target="_blank" href="docker-swarm.html">Docker Swarm</a></li>  <li><a target="_blank" href="docker-registry.html">Docker Registry</a></li>  <li><a target="_blank" href="jenkins.html">Jenkins</a></li>  <li>This Post</li>  <li><a target="_blank" href="swarm-and-prometheus-ii.html">Swarm and Prometheus II</a></li>  </ul>  </td>  </tr>  </table>      <p>To monitor the Docker Swarm and our application running in the cluster with Prometheus; we can craft a v3 Compose File. To continue from the previous post; for the Swarm; we will like to have our Node Exporter running on all nodes. Unfortunately the host networking and host process namespace is not supported when we do docker stack deploy onto the swarm. Node Exporter and the Docker image we are using supports the command line argument and we can tell it that required directories are someplace else and using Docker Volume support can map the host directories to the container and pass the mapped paths to Node Exporter accordingly</p>      <ul>     <li>All the code and required files are available in Prometheus folder at <a title="https://github.com/khurram-aziz/HelloDocker" href="https://github.com/khurram-aziz/HelloDocker">https://github.com/khurram-aziz/HelloDocker</a></li>   </ul>      <p><img title="node-exporter" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="node-exporter" src="/images/Swarm-and-Prometheus_DBDE/node-exporter.png" width="1269" border="0" height="412"></p>      <ul>     <li>We will have to expose the Node Exporter port</li>        <li>Note that we are deploying the container globally so each participating node get its own container instance; we will end up having the Node metrics at http://swarm-node:9100 url of participating nodes</li>   </ul>      <p>If we have three nodes and we want to have a friendly host names for them to use in prometheus.yml Job definition; we can use extra_hosts section in our compose file. Further; if we want to access Prometheus we need that its container gets scheduled at some known node; so we have http://some-known-name:port url to reach Prometheus. We can do this using the constraints section in the Prometheus service section of the compose file</p>      <p><img title="prometheus" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="prometheus" src="/images/Swarm-and-Prometheus_DBDE/prometheus.png" width="1043" border="0" height="326"></p>      <p>In the previous Prometheus post; we made a .NET 4 console app and ran it on the development box. For the Docker Swarm; we need something that can run in the cluster. We can code .NET Core Console and use <a target="_blank" href="https://github.com/prometheus-net/prometheus-net">prometheus-net</a> client library to expose the metrices. Our app will be deployed in the cluster so it will have multiple instances running; each container instance will get its own IP address and Prometheus label the metric with this information; but its a good idea that we also include our own labels to identify which metric is coming from where.</p>      <p><img title="dotnet-core" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="dotnet-core" src="/images/Swarm-and-Prometheus_DBDE/dotnet-core.png" width="862" border="0" height="409"></p>      <ul>     <li><img title="multi-stage-build" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;float:right;display:inline;background-image:none;" alt="multi-stage-build" src="/images/Swarm-and-Prometheus_DBDE/multi-stage-build.png" align="right" width="476" border="0" height="289">I am using machine, custom_gauge and custom_counter matrices from the previous post; however for the Swarm; have added name and os labels using the prometheus-net client library. These labels will be given Machine Name and its OS Version values</li>   </ul>      <p>One important thing to deploy the custom Docker image on the Swarm is that it needs to be “available” or “accessible” on all Swarm Nodes; this can be easily done by having a Docker Registry. Docker now has <a target="_blank" href="https://docs.docker.com/develop/develop-images/multistage-build/">Multi Stage Build</a> option and we can avoid to give access to Docker Registry to development box where we are building the Docker image or having Jenkins (or similar build environment). The Swarm node can compile and build .NET application on its own using this Multi Stage Build thing; there exist seperate SDK and RUNTIME official docker images</p>      <ul>     <li>For this to work; we need to upload all the required files to the Swarm node where we will initiate this multi-stage build thing. We can either SCP or use GIT (or something like it) for this</li>        <li>You can still go the traditional way by building the image on the development box and pushing from there to your docker registry; or tar-zip it from the development box and import in each node individually; whichever way you choose; all the Swarm Nodes need to either have or know a way to access the required image to run</li>   </ul>      <p>Now if we bring our stack up using docker stack deploy and deploy the Host Stats dashboard (see the previous Prometheus post); we can view and monitor the Node Exporter matrices of each Swarm Node</p>      <p><img title="hostmon-nodes" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="hostmon-nodes" src="/images/Swarm-and-Prometheus_DBDE/hostmon-nodes.png" width="827" border="0" height="610"></p>      <p>However our custom application’s dashboard is not how we want; our application is deployed and running on all nodes (that we can verify either from Docker CLI or using Visualizer; see first Docker Swarm post) but Prometheus is not retrieving matrices from all these nodes simultaneously instead it is getting it from one node first and then from second and so on. This is happening because we had “netcoreconsole:8000” as target entry in the job and Docker Swarm is doing DNS round robin load balancing. Note that the instance label that Prometheus is adding is same but our custom label name is different for three nodes</p>      <p><img title="nosd-grafana" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="nosd-grafana" src="/images/Swarm-and-Prometheus_DBDE/nosd-grafana.png" width="820" border="0" height="333"></p>      <p>Prometheus has <a target="_blank" href="https://github.com/prometheus/prometheus/tree/master/discovery">Service Discovery</a> options; we can use <a target="_blank" href="https://docs.docker.com/docker-cloud/apps/service-links/">Docker Swarm service discovery</a> support; the Swarm exposes a special tasks.service dns entry and it will have IP addresses of all the associated containers of the service. Instead of using static_configs entry we can use dns_sd_configs entry with this special DNS entry and Prometheus will discover all the nodes and start retrieving the matrices</p>      <p><img title="dns-sd" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="dns-sd" src="/images/Swarm-and-Prometheus_DBDE/dns-sd.png" width="631" border="0" height="639"></p>      <ul>     <li>For more Prometheus Service Discovery information see <a href="https://prometheus.io/blog/2015/06/01/advanced-service-discovery">https://prometheus.io/blog/2015/06/01/advanced-service-discovery</a></li>        <li>As an exercise; try to use DNS Service Discovery option with the Node Exporter Job as well</li>   </ul>      <p>We can confirm that it has discovered all the containers from the Service Discovery interface; and graphing our metrics we should see values coming from all the participating nodes in parallel now</p>      <p><a href="/images/Swarm-and-Prometheus_DBDE/sd-prom.png"><img title="sd-prom" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="sd-prom" src="/images/Swarm-and-Prometheus_DBDE/sd-prom_thumb.png" width="423" border="0" height="480"></a><a href="/images/Swarm-and-Prometheus_DBDE/sd-prom-graph.png"><img title="sd-prom-graph" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="sd-prom-graph" src="/images/Swarm-and-Prometheus_DBDE/sd-prom-graph_thumb.png" width="549" border="0" height="480"></a></p>      <p>This should automatically get reflected in Grafana as well</p>      <p><img title="sd-grafana" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="sd-grafana" src="/images/Swarm-and-Prometheus_DBDE/sd-grafana.png" width="886" border="0" height="442"></p>      <p>We now dont need to expose the Prometheus; we can deploy it on the Swarm anywhere; the Grafana will discover it in the Swarm using the Service DNS entry that Swarm makes available. We only need Grafana to be running at the known location in the Swarm</p>      <ul>     <li>All the code and required files are available in Prometheus folder at <a title="https://github.com/khurram-aziz/HelloDocker" href="https://github.com/khurram-aziz/HelloDocker">https://github.com/khurram-aziz/HelloDocker</a></li>   </ul>      <p>I remained focus to our custom application and its monitoring when running in Swarm. If you want to monitor your Swarm; take a look at <a title="https://stefanprodan.com/2017/docker-swarm-instrumentation-with-prometheus/" href="https://stefanprodan.com/2017/docker-swarm-instrumentation-with-prometheus">https://stefanprodan.com/2017/docker-swarm-instrumentation-with-prometheus</a>; an excellent work done by Prodan; and he has made all that work available on <a target="_blank" href="https://github.com/stefanprodan/swarmprom">Github</a> as well</p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

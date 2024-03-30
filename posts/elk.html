@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - ELK</title>
+
+  <link rel="canonical" href='/posts/elk'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - ELK' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/elk' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            ELK
+          </h1>
+            <div class="meta">Published on Saturday, May 18, 2019</div>
+              <div class="mt-3">
+                  <a href="/tags/databases" class="badge text-bg-light"> Databases</a>
+                  <a href="/tags/linux" class="badge text-bg-light"> Linux</a>
+                  <a href="/tags/system-administration" class="badge text-bg-light"> System Administration</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <table cellspacing="10" cellpadding="10">        <tr>          <td><b>Time Series Databases</b>            <ul>              <li><a href="prometheus.html">Prometheus</a></li>              <li><a href="influxdb.html">InfluxDB</a></li>              <li>This Post</li>          </ul>        </td>    <td><b>Elasticsearch Series</b>            <ul>              <li>This Post</li>              <li><a href="kibana.html">Kibana: DevTools</a></li>  <li><a href="beats.html">Beats</a></li>          </ul>        </td>      </tr>  </table>    <p>If you ever managed a Linux server or developed application for it; you probably know about Splunk; it captures, indexes and correlates real-time data in a searchable repository from which it can generate graphs, reports, alerts, dashboards and visualizations. There exists free version that one can try out or even use in production, it comes with 500Mb / day indexing limit, which is enough for many applications. Splunk also has API and allows third party applications, there is even official <a target="_blank" href="https://github.com/splunk/splunk-sdk-csharp">C# SDK</a> in case its your preferred development platform; seeing the Github activity of its repository seems like nothing much going on there lately. There exists an open source and much better alternative; Elasticsearch. Its open source, actively developed and maintained, strong community and ecosystem and offers not one but two .NET client libraries <a target="_blank" href="https://github.com/elastic/elasticsearch-net">NEST and Elasticsearch.NET</a> and they are actively maintained and developed.</p>      <p><img width="387" height="394" align="right" style="margin:10px 10px 0px 0px;float:right;display:inline;" src="https://www.elastic.co/static/images/elk/elk-stack-elkb-diagram.svg">"ELK" is the acronym for three open source projects: Elasticsearch, Logstash, and Kibana. Elasticsearch is a search and analytics engine. Logstash is a server‑side data processing pipeline that ingests data from multiple sources simultaneously, transforms it, and then sends it to a "stash" like Elasticsearch. Kibana lets users visualize data with charts and graphs in Elasticsearch. Elasticsearch is the heart of this stack, its an open source, distributed, RESTful, JSON-based search engine based on the Apache Lucene information retrieval library. Its developed in Java and provides distributed and multitenancy out of the box. There are commercially supported versions and addons. Elastic, the company behind it provides cloud instances and other leading cloud provides support it as well. Official Elasticsearch clients are available in Java, .NET (C#), PHP, Python, Apache Groovy, Ruby and many other languages. All this makes Elasticsearch, the most popular enterprise search engine.</p>      <p>Out of box scalability due to built sharding (the index can be divided into shards and each shard can have zero or more replicas across multiple Elasticsearch nodes), snapshot and restore features, storing data as JSON and exposing it RESTfully, indexing and search capability of Elasticsearch makes it fantastic option for structured and unstructured data including free text, system logs and more. It can be used to search </p>      <p>Elasticsearch is highly API driven and provides strong support for storing time series data and Kibana offers Time Filters and together they can be used as Time Series database and visualization tools. Given Elasticsearch has strong support of structured and unstructured data, we can store much information in the time series along some metrics values.</p>      <p><img width="535" height="317" title="image" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" alt="image" border="0" src="/images/ELK_BA7A/image.png"></p>      <p>For this post; I am going to use ELK as Splunk alternative. Splunk offers a SYSLOG server where we can push system logs. Linux logs a large amount of events to the disk, where they’re mostly stored in the /var/log directory in plain text. Most log entries go through the system logging daemon, syslogd, and are written to the system log. The logger utility allows you to quickly write a message to your system log with a single, simple command.</p>      <p><img width="1053" height="327" title="image" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" alt="image" border="0" src="/images/ELK_BA7A/image_3.png"></p>      <p>SYSLOG is a standard for message logging. It allows separation of the software that generates messages, the system that stores them, and the software that reports and analyzes them. Each message is labeled with a facility code, indicating the software type generating the message, and assigned a severity level. We may use syslog for system management and security auditing as well as general informational, analysis, and debugging messages. A wide variety of devices, such as printers, routers, and message receivers across many platforms use the syslog standard. Implementations of syslog exist for many operating systems. Many Unix and Unix like OS including Ubuntu comes with a service called rsyslogd that can forward the system log messages to IP network including SYSLOG server. On Ubuntu its configuration file is located at /etc/rsyslog.d/50-default.conf</p>      <p><img width="534" height="110" title="image" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" alt="image" border="0" src="/images/ELK_BA7A/image_4.png"></p>      <p>We can add an entry <b>*.* &#64;Your-Syslog-Server:514</b> entry there to send all log entries to some SYSLOG server. <a target="_blank" href="https://github.com/jchristn/WatsonSyslogServer">Watson Syslog Server</a> is descent and simple C# code that we can modify to push syslog messages to Elasticsearch using NEST or Elasticsearch.NET client libraries (or push the syslog data to some other database of your choice)</p>      <ul>     <li>With *.* we are sending all log files; we can filter here which logs we are interested; for instance we can use cron.* to send just cron logs</li>        <li>514 is the UDP port of your syslog; if your syslog server is listening on some other port; change it accordingly</li>   </ul>      <p><img width="639" height="345" title="image" align="right" style="float:right;display:inline;background-image:none;" alt="image" border="0" src="/images/ELK_BA7A/image_5.png">iptables is a user-space utility program that allows a system administrator to configure the tables provided by the Linux kernel firewall (implemented as different Netfilter modules) and the chains and rules it stores. Different kernel modules and programs are currently used for different protocols; iptables applies to IPv4, ip6tables to IPv6, arptables to ARP, and ebtables to Ethernet frames. UFW, or Uncomplicated Firewall, is an interface to iptables that is geared towards simplifying the process of configuring a firewall. While iptables is a solid and flexible tool, it can be difficult for beginners to learn how to use it to properly configure a firewall.</p>      <p>On Ubuntu, we can install ufw using apt, dont forget to allow SSH before enabling it and check you can sush your system after enabling it to avoid getting yourself locked out. The nice thing UFW does is that it also add log rules, so when it blocks something they also gets logged into the system log that we are forwarding to a SYSLOG server. So we now have a setup that blocked traffic will get reported at our syslog server</p>      <p><img width="644" height="97" title="image" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" alt="image" border="0" src="/images/ELK_BA7A/image_6.png"></p>      <p>Logstash is an open source, server-side data processing pipeline that can ingest data from different sources, transforms it, and then sends it to “stash”; Elasticsearch is preferred choice naturally. It supports a variety of inputs that pull in events or can listen where events are submitted, can ingest from logs, metrics, web applications and other data stores, all in continuous, streaming fashion. It can then filters parse each event, identify named fields to build structure, and transform them to converge on a common format for more powerful analysis and business value. It then route data where we want, giving us the flexibility and choice.</p>      <ul>     <li><a target="_blank" href="https://www.elastic.co/guide/en/logstash/current/input-plugins.html">Logstash Input Plugins</a>; they enable a specific source of events to be read by Logstash</li>        <li><a title="https://www.elastic.co/guide/en/logstash/current/filter-plugins.html" target="_blank" href="http://www.elastic.co/guide/en/logstash/current/filter-plugins.html">Filter Plugins</a>; they perform intermediary processing on an event. Filters are often applied conditionally depending on the characteristics of the event</li>        <li><a title="https://www.elastic.co/guide/en/logstash/current/output-plugins.html" target="_blank" href="https://www.elastic.co/guide/en/logstash/current/output-plugins.html">Output Plugins</a>; they send event data to a particular destination. Outputs are the final stage in the event pipeline.</li>   </ul>      <p>There can be multiple pipelines in given Logstash instance; one simple Hello World pipeline looks like this:</p>      <p><img width="834" height="337" title="image" style="display:inline;background-image:none;" alt="image" border="0" src="/images/ELK_BA7A/image_7.png"></p>      <ul>     <li>heartbeat input plugin generating test even, Hello from Logstash! message each 50sec</li>        <li>There is no filter</li>        <li>elasticsearch output filter writing the event to Elasticsearch</li>   </ul>      <p>There is a <a target="_blank" href="https://www.elastic.co/guide/en/logstash/current/plugins-inputs-syslog.html">Syslog input plugin</a> using which we can make Logstash acting as Syslog server receiving logs/events and a <a target="_blank" href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html">Grok filter plugin</a> that can parse unstructured log data into something structured and queryable. It is perfect for syslog and other such logs type events. Logstash comes with <a target="_blank" href="https://github.com/logstash-plugins/logstash-patterns-core/tree/master/patterns">120 parsing patterns</a> that we can use and can add our own as well.</p>      <p>With a Logstash pipeline like below; we can listen to Linux system logs at 5000 udp as syslog server. We can then use grok plugin in the filter section and parse the syslog message.</p>  <script src="//gist-it.appspot.com/github/khurram-aziz/HelloDocker/blob/master/Elk/logstash-syslog.conf"></script>    <p>In the example above; if grok pattern succeeds the rich fields will get created defined in the pattern. We can detect this using _grokparsefailure tag that grok plugin will add. If its parsing; we are applying mutate filter plugin to remove message field that gets created in the first step. We can further parse the UFW syslog message and extract the source IP and apply geoip filter that will add Geolocation fields.</p>      <p>In output, if event source was syslog input plugin and we were able to parse the message; we are writing to syslog-* index at Elasticsearch otherwise writing to logstash-* index. UFW parsed messages are logged into logstash-* index</p>      <ul>     <li>All documents in Elasticsearch are stored in some index</li>   </ul>      <p>Kibana lets you visualize your Elasticsearch data and navigate the Elastic Stack. We can query/filter and view Elasticsearch data in tabular and graphical forms. We first define Kibana index; for instance logstash-* and optionally specify the time field to apply time filters on our time series data. If everything is in order we can quickly find out in Kibana from where traffic is being blocked (if any)</p>      <p><a href="/images/ELK_BA7A/image_9.png"><img width="619" height="484" title="image" style="display:inline;background-image:none;" alt="image" border="0" src="/images/ELK_BA7A/image_thumb.png"></a><a href="/images/ELK_BA7A/image_10.png"><img width="633" height="484" title="image" style="display:inline;background-image:none;" alt="image" border="0" src="/images/ELK_BA7A/image_thumb_3.png"></a></p>      <ul>     <li>All required files are available in Elk folder &#64; <a href="https://github.com/khurram-aziz/HelloDocker">https://github.com/khurram-aziz/HelloDocker</a></li>   </ul>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

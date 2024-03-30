@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - ZooKeeper</title>
+
+  <link rel="canonical" href='/posts/zookeeper'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - ZooKeeper' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/zookeeper' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            ZooKeeper
+          </h1>
+            <div class="meta">Published on Friday, February 17, 2017</div>
+              <div class="mt-3">
+                  <a href="/tags/net" class="badge text-bg-light"> .NET</a>
+                  <a href="/tags/databases" class="badge text-bg-light"> Databases</a>
+                  <a href="/tags/linux" class="badge text-bg-light"> Linux</a>
+                  <a href="/tags/visual-studio" class="badge text-bg-light"> Visual Studio</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <p><b>ZooKeeper Series</b></p>  <ul>   <li><a href="zookeeper.html" target="_blank">ZooKeeper</a> </li>    <li><a href="zookeeper-higher-level-constructs.html" target="_blank">Higher-level Constructs with ZooKeeper</a> </li>    <li><a href="docker-swarm.html" target="_blank">Docker Swarm</a> </li> </ul>  <p><a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeeper</a> is an open-source server which enables highly reliable distributed coordination. It helps us by providing a distributed synchronization service that can be used for maintaining configuration information, naming, group service and other similar aspects of distributed applications. This itself is distributed and is highly reliable and instead of reinventing the wheel; we can use this foundation service in our distributed applications. It was a subproject of Apache Hadoop but now it is a top level project. In a nutshell; its a distributed hierarchical key-value store, and in a distributed environment we typically setup multiple ZooKeeper servers to which clients; nodes running our distributed application; connect and retrieve or set information.</p>  <p><img style="margin:10px 10px 0px 0px;" src="https://cwiki.apache.org/confluence/download/attachments/24193436/service.png?version=1&amp;modificationDate=1295027310000&amp;api=v2" />    <br />Picture from cwiki.apache.org</p>  <p>It stores the information in “znodes” and provides the namespace that is much like a file system. Znode data typically is less than a megabyte; and we can also have ACLs at Znode level. If there are multiple Zookeeper servers; they need to know about each other and they then maintain a quorum and write requests are forwarded to other servers and go through consensus before a response is generated. It also maintains the update order; updates are identified by the unique zxid; the transaction id; and we can have “watches” that Zookeeper server will trigger accordingly.</p>  <p>Its a Java application that can run on Linux, Solaris or FreeBSD operating system. The simplest way to have it running in lab, development or production environment is no doubt using Docker! With two commands; we can have a server up and running and a connected client!</p>  <p><img title="Docker" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="Docker" src="/images/ZooKeeper_8005/Docker.png" width="1112" height="312" /></p>  <ul>   <li><a href="https://hub.docker.com/_/zookeeper" target="_blank">zookeeper</a> is an official Docker image and we can run its two instance; one as a server and another as a client; zkCli.sh is its CLI client that we can use </li>    <li>The image exposes; 2181, 2888 and 3888; ZooKeeper client, follower and election ports; and we can use Docker standard linking </li>    <li>Visit the image page to learn about how we can further configure it using the environment variables and volume information where it stores the data and log </li> </ul>  <p><img title="zkCli" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;float:right;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="zkCli" src="/images/ZooKeeper_8005/zkCli.png" width="538" align="right" height="425" />We can use zkCli.sh / ZooKeeper CLI to create / read znodes.</p>  <ul>   <li>We can create three types of znodes using create PATH command; simple, ephemeral (with –e flag) and sequential (with –s flag) </li>    <li>Ephemeral node will automatically get deleted when the session expires; we can disconnect and reconnect and use ls command to verify this </li> </ul>  <p><img title="zkCli-help" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;float:left;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="zkCli-help" src="/images/ZooKeeper_8005/zkCli-help.png" width="328" align="left" height="391" /><img title="zkCli-ls" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="zkCli-ls" src="/images/ZooKeeper_8005/zkCli-ls.png" width="385" height="103" /></p>  <ul>   <li>The Ephemeral node might continue to appear for a while; the node gets deleted after the connection time out and by default its 30sec </li> </ul>  <p>Similarly; we can update data in an existing node using set. We can check the stat of the znode using stat to know the zxid and time values. There are two transaction and timestamp values; cZxid and ctime for create and mZxid and mtime for modification.</p>  <p>delete is used to delete the node that has no children and to delete any znode recursively we use rmr</p>  <p>We can also set ACL to znodes; restrict it to certain IP for write or read; there’s also plugin based authentication support and we can define ACLs accordingly. There’s quota support as well</p>  <p>To connect from our application; there exists language bindings and client libraries. C. Java, Perl and Pythn language bindings are official supported. <a title="https://cwiki.apache.org/confluence/display/ZOOKEEPER/ZKClientBindings" href="https://cwiki.apache.org/confluence/display/ZOOKEEPER/ZKClientBindings" target="_blank">https://cwiki.apache.org/confluence/display/ZOOKEEPER/ZKClientBindings</a> has list of client bindings.</p>  <p><a title="https://github.com/shayhatsor/zookeeper" href="https://github.com/shayhatsor/zookeeper" target="_blank">https://github.com/shayhatsor/zookeeper</a> is a .NET async client also available as Nuget at <a href="https://www.nuget.org/packages/ZooKeeperNetEx" target="_blank">https://www.nuget.org/packages/ZooKeeperNetEx</a>; the good thing about this is that its not only .NET async friendly (Task based APIs) but also compatible with .NET Core</p>  <p><a title="https://marketplace.visualstudio.com/items?itemName=ksubedi.net-core-project-manager" href="https://marketplace.visualstudio.com/items?itemName=ksubedi.net-core-project-manager" target="_blank">https://marketplace.visualstudio.com/items?itemName=ksubedi.net-core-project-manager</a> is .NET Core Project Manager (Nuget) that allows us to search, install and remove Nuget package right from <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a>; that we know is a free, open source, runs everywhere, lightweight code editor with debugging and git support. Here’s the .NET Core client code using this Nuget</p> <script src="//gist-it.appspot.com/github/khurram-aziz/HelloDocker/blob/master/Zoo/HelloZoo.cs"></script>  <ul>   <li>We need to map the Zookeeper’s 2181 port to Docker host so we can access it at known IP address; run the Zookeeper using docker run –-rm –p 2181:2181 zookeeper </li>    <li>Notice we are specifying the connection time out when connecting to Zookeeper and also need a watcher; a null watcher code is at <a title="https://github.com/khurram-aziz/HelloDocker/blob/master/Zoo/ZooHelper.cs" href="https://github.com/khurram-aziz/HelloDocker/blob/master/Zoo/ZooHelper.cs" target="_blank">https://github.com/khurram-aziz/HelloDocker/blob/master/Zoo/ZooHelper.cs</a> </li> </ul>  <p><img title="dotnet-core" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="dotnet-core" src="/images/ZooKeeper_8005/dotnet-core.png" width="963" height="562" /></p>  <ul>   <li>The project is available at <a title="https://github.com/khurram-aziz/HelloDocker/tree/master/Zoo" href="https://github.com/khurram-aziz/HelloDocker/tree/master/Zoo" target="_blank">https://github.com/khurram-aziz/HelloDocker/tree/master/Zoo</a> </li> </ul>  <p>We can now use <a href="docker-compose.html" target="_blank">docker-compose</a> and can easily run more instances of Zookeeper in our lab/development environment. Here’s a docker-compose YAML file to run three instances for the Zookeeper cluster</p> <script src="//gist-it.appspot.com/github/khurram-aziz/HelloDocker/blob/master/Zoo/zoo-v2.yml"></script>  <ul>   <li>Notice that we have mapped container’s 2181 ports to Docker host’s 2181, 2182 and 2183 ports; we can now use <b>127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183</b> as the connection string and our client will connect to the one Zookeeper instance out of this cluster automatically; or we can specify one or two nodes of our choice </li> </ul>  <p>We can stop one instance of the Zookeeper server; and write the value using available nodes, then bring back the node and check if the updated value gets replicated! We can try writing after stopping two instances. Will it allow to write if quorum is not complete?</p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

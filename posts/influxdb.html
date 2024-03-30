@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - InfluxDB</title>
+
+  <link rel="canonical" href='/posts/influxdb'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - InfluxDB' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/influxdb' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            InfluxDB
+          </h1>
+            <div class="meta">Published on Friday, June 22, 2018</div>
+              <div class="mt-3">
+                  <a href="/tags/arduino" class="badge text-bg-light"> Arduino</a>
+                  <a href="/tags/databases" class="badge text-bg-light"> Databases</a>
+                  <a href="/tags/esp8266" class="badge text-bg-light"> ESP8266</a>
+                  <a href="/tags/iot" class="badge text-bg-light"> IoT</a>
+                  <a href="/tags/observability" class="badge text-bg-light"> Observability</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <table cellspacing="10" cellpadding="10"><tr><td><p><b>TICK Series</b></p><ul>             <li>This Post</li>  <li><a href="telegraf.html">Telegraf</a></li></ul></td><td><p><b>Time Series Databases</b></p><ul>     <li><a href="prometheus.html" target="_blank">Prometheus</a></li>  <li>This Post</li>  <li><a href="elk.html" target="_blank">ELK</a></li></ul></td></tr></table><p><a href="/images//0af903c6ed63_A51F/Tick-Stack-Complete.png"><img width="611" height="480" title="Tick-Stack-Complete" align="right" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;float:right;display:inline;background-image:none;" alt="Tick-Stack-Complete" src="/images//0af903c6ed63_A51F/Tick-Stack-Complete_thumb.png" border="0"></a>           InfluxDB is another open source time series database and is written in Go language. It has no external dependency and its data model consists of several key-value pairs called the fieldset. Each point has a timestamp a value and fieldset. Timestamp and fieldset form a tagset and each point gets indexed by its timestamp and fieldset. Collection of tagsets form a series and multiple series can be grouped together by a string identifier to form a measurement. The measurement has a retention policy that defines how data gets downsampled and deleted. InfluxDB has SQL-like query engine having builtin time-centric functions for querying data. �Continuous Queries� can run periodically (and automatically by the database engine) storing results in a target measurement. It can listen on HTTP, TCP, and UDP where it accepts a data using its line protocol that is very similar to Graphite.</p>  <p>The InfluxDB also has a commercial option; which is a distributed storage cluster giving horizontal scalability with storage and queries being handled by many nodes at once. The data gets sharded into the cluster nodes and it gets consistent eventually. We can query the cluster that runs sort of like MapReduce job. </p>  <h1>InfluxDB vs Prometheus</h1>  <p><a href="/images//0af903c6ed63_A51F/Tick-Stack-Complete.png"></a>InfluxDB has nanosecond resolution while Prometheus has millisecond, InfluxDB supports int64, float64, bool, and string data types using different compression schemes for each one while Prometheus only supports float64. Prometheus approach of High Availability is to run multiple Prometheus nodes in parallel with no eventual consistency; and its Alertmanager than handles the deduplication and grouping. InfluxDB writes are durable while Prometheus buffers the writes in the memory and flushes them periodically (by default each 5min). InfluxDB has <a href="https://docs.influxdata.com/influxdb/v1.5/query_language/continuous_queries/" target="_blank">Continuous Queries</a> and Prometheus has <a href="https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/" target="_blank">Recording Rules</a>. Both does data compression and offer extensive integrations; including with each other. Both offers hooks and APIs to extend them further.</p>  <p>Prometheus is simple, more performant and suits more for metrics. Its simpler storage model, simpler query language, alerting and notification functionality suits more to system administrators. That said; Prometheus being a PULL model; the server needs access to the nodes to retrieve the metrices and it might not suite in scenarios like IoT where devices are behind Wifi Gateway; or polling metrices from office machines that are behind NAT. Prometheus doesn't allow recording past data; in case you are extracting some time series data from some hardware logger; but InfluxDB let you record such data. In such situations where Prometheus is not full filling your requirements or where you need RDBMS like functionality against the time series data; we can use InfluxDB</p>  <h1>IoT Example</h1>  <p>For this post I am using Internet of Thing (IoT) scenario. Lets revisit an olt <a href="johnny-five.html" target="_blank">IoT post</a> in which we used ESP8266 to measure room temperature using the sensor and send the readings to �ThingSpeak� service to view the temperature readings over time in the chart. In this post; we will try to remove ThingSpeak dependency using the �TICK stack�, the InfluxDB is an integral component of. TICK is an open source Time Series Platform for handling metrics and events and it consists of <a href="https://github.com/influxdata/telegraf" target="_blank">Telegraf</a>, <a href="https://github.com/influxdata/influxdb" target="_blank">InfluxDB</a>, <a href="https://github.com/influxdata/chronograf" target="_blank">Chronograf</a>, and <a href="https://github.com/influxdata/kapacitor" target="_blank">Kapacitor</a> open source projects all written in Go language. Chronograph is an administrative user interface and visualization engine. We need it to run InfluxQL; the SQL like queries against the data in InfluxDB. It also offers templates and libraries to build dashboards with real-time visualizations of time series data like Grafana</p>  <ul>   <li>TICK picture taken from <a href="https://www.influxdata.com/time-series-platform">https://www.influxdata.com/time-series-platform</a></li> </ul>  <blockquote>   <p>Some might argue that we can use Prometheus with Pushgateway; the IoT devices can push their metrices to the Pushgateway that get hosted at the known location; its a valid argument and yes we can use it instead; as it acts as a buffer and Prometheus polls the metrices off the gateway periodically; the data sampling will not get reflected in the Time series database. Prometheus client libraries when used with Pushgateway usually sends all the metrices; even if one value is changed and needs the push; this increases network traffic and load on the sender; not something good for IoT scenario. Lastly Pushgateway remembers all the metrices even if they are no longer being pushed from the client; so for instance an IoT device is sending its IP address or host name in the metric; it will get remembered and next time if it gets different IP (usually the case in Wifi/behind NAT) it will get remembered as separate metric in Pushgateway and given Prometheus is polling off Pushgateway it will keep recording no longer required metrices as well. The Pushgateway has an option to group the metrices and we can delete the whole group using Pushgateway HTTP/Web API; but its not very ideal</p> </blockquote>  <p>The most convenient way to spin up the TICK stack is by using Docker. Lets create a simple docker-compose.yml file having InfluxDB and Chronograf and spin it up. We can then access Chronograf and can explore InfluxDB where it has created _internal database logging its own metrics</p>  <ul>   <li>All required files are available in Tick folder &#64; <a title="https://github.com/khurram-aziz/HelloDocker" href="https://github.com/khurram-aziz/HelloDocker">https://github.com/khurram-aziz/HelloDocker</a></li> </ul>  <p><img width="370" height="480" title="docker-compose" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="docker-compose" src="/images//0af903c6ed63_A51F/docker-compose.png" border="0"><a href="/images//0af903c6ed63_A51F/chronograf.gif"><img width="625" height="480" title="chronograf" style="margin:10px 10px 0px 0px;display:inline;" alt="chronograf" src="/images//0af903c6ed63_A51F/chronograf_thumb.gif"></a></p>  <p>Lets extract the default �configuration� file of InfluxDB from its docker image first to build upon our configuration</p>  <p><img width="637" height="416" title="influxdb-conf" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="influxdb-conf" src="/images//0af903c6ed63_A51F/influxdb-conf.png" border="0"></p>  <p>Next enable InfluxDB UDP interface by adding udp section in the influxdb.conf; also map this UDP port to Docker Host and allow incoming UDP traffic to the mapped port in host�s firewall so that our IoT device can send its metrics on the known IP/Port of our Docker host</p>  <p><img width="1146" height="616" title="udp" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="udp" src="/images//0af903c6ed63_A51F/udp.png" border="0"></p>  <p>Now for the IoT firmware in Arduino; we just need to use the WiFiUDP instance from WiFiUDP.h and send the metric data using the InfluxDB line protocol; if we want to name our measurement temperature, and want to send device name, its local ip and raw sensor value along with the calculated temperature; we need to send following string in the udp packet</p>  <p>temperature,device=DEVICENAME,localIP=ITS-IP,sensorValue=S value=T</p>  <p>where S is sensor value and T is calculated temperature; our loop() function in Arduino will look something like this:</p>  <p><img width="1447" height="557" title="arduino" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="arduino" src="/images//0af903c6ed63_A51F/arduino.png" border="0"></p>  <ul>   <li>For more details see <a title="https://www.influxdata.com/blog/how-to-send-sensor-data-to-influxdb-from-an-arduino-uno/" href="https://www.influxdata.com/blog/how-to-send-sensor-data-to-influxdb-from-an-arduino-uno/" target="_blank">https://www.influxdata.com/blog/how-to-send-sensor-data-to-influxdb-from-an-arduino-uno/</a></li> </ul>  <p>Bringing InfluxDB and Chronograf online; the data from IoT device will start logging and we can view the temperature graph in the Chronograf and export the raw data as CSV easily</p>  <p><img width="1005" height="811" title="influxdb-temp-graph" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="influxdb-temp-graph" src="/images//0af903c6ed63_A51F/influxdb-temp-graph.png" border="0"></p>  <ul>   <li>The Arduino code; docker compose and container configuration files are available in Tick folder &#64; <a title="https://github.com/khurram-aziz/HelloDocker" href="https://github.com/khurram-aziz/HelloDocker">https://github.com/khurram-aziz/HelloDocker</a></li> </ul>  <p>In real world; Raspberry/Orange PIs can be used in remote cabinets with off the shelf / industrial strength temperature/humaditiy sensors. The boards can be connected to the switches directly due to their ethernet ports. These devices run full fledge Linux; you can access them remotely; run administrative scripts / commands; these boards also have USB ports where you can connect deployed devices administrative / serial ports. No need to send someone with laptops and physically connect in emergencies</p>  <p><img width="640" height="480" title="raspberry-pi" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="raspberry-pi" src="/images//0af903c6ed63_A51F/raspberry-pi.jpg" border="0"><img width="640" height="360" title="orange-pi" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="orange-pi" src="/images//0af903c6ed63_A51F/orange-pi.jpg" border="0"></p>  <ul>   <li>Pictures taken from internet as reference</li> </ul>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

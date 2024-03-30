@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Prometheus</title>
+
+  <link rel="canonical" href='/posts/prometheus'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Prometheus' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/prometheus' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Prometheus
+          </h1>
+            <div class="meta">Published on Monday, April 16, 2018</div>
+              <div class="mt-3">
+                  <a href="/tags/databases" class="badge text-bg-light"> Databases</a>
+                  <a href="/tags/docker" class="badge text-bg-light"> Docker</a>
+                  <a href="/tags/observability" class="badge text-bg-light"> Observability</a>
+                  <a href="/tags/system-administration" class="badge text-bg-light"> System Administration</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+          <table cellspacing="0" cellpadding="2">       <tr>         <td style="width:300px;vertical-align:top;">           <p><b>Prometheus Series</b></p>  <ul>  <li>This Post</li>  <li><a target="_blank" href="swarm-and-prometheus.html">Swarm and Prometheus</a></li>  <li><a target="_blank" href="swarm-and-prometheus-ii.html">Swarm and Prometheus II</a></li>  </ul>  </td>  <td style="width:300px;vertical-align:top;">  <p><b>Time Series Databases</b></p>  <ul>  <li>This Post</li>  <li><a target="_blank" href="influxdb.html">InfluxDB</a></li>  <li><a target="_blank" href="elk.html">ELK</a></li>  </ul>  </td>  </tr>  </table>  <p>A time series is a series of data points indexed (or listed or graphed) in time order. Most commonly, a time series is a sequence taken at successive equally spaced points in time. Thus it is a sequence of discrete-time data. Examples of time series are heights of ocean tides, counts of sunspots, and the daily closing value of the Dow Jones Industrial Average. A time series database (TSDB) is a software system that is optimized for handling time series data, arrays of numbers indexed by time (a datetime or a datetime range). In some fields these time series are called profiles, curves, or traces. A time series of stock prices might be called a price curve. A time series of energy consumption might be called a load profile. A log of temperature values over time might be called a temperature trace. � Wikipedia</p>      <p><img width="763" height="525" title="architecture" align="right" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;float:right;display:inline;background-image:none;" alt="architecture" border="0" src="/images/Prometheus_A469/architecture.png"></p>      <p><a target="_blank" href="https://prometheus.io/">Prometheus</a> is an open-source systems monitoring and alerting toolkit; most of it components are written in Go, making them easy to build and deploy as static binaries. Prometheus joined the Cloud Native Computing Foundation in 2016 as the second hosted project, after Kubernetes. It provides multi-dimensional data model with time series data identified by metric name and key/value pairs. It collects time series using HTTP pulls, HTTP targets can be discovered via service discovery or configuration files. It also features a query language and it comes with the web interface where you can explore the data using its query language and execute and plot it for casual / exploration purposes.</p>      <p>Picture Credit: <a href="https://prometheus.io/docs/introduction/overview">https://prometheus.io/docs/introduction/overview</a></p>      <p>There are client libraries that we can use to add instrumenting support and integration with <a target="_blank" href="https://github.com/prometheus/prometheus">Prometheus Server</a>. <a href="https://prometheus.io/docs/instrumenting/clientlibs">https://prometheus.io/docs/instrumenting/clientlibs</a> has the list of these libraries for different languages and platform. There is also a <a target="_blank" href="https://github.com/prometheus/pushgateway">push gateway</a> for scenarios where adding HTTP endpoint to the application/device/node is not possible. There are standalone �exporters� that can retrieve metrics from popular services like HAProxy, StatsD, Graphite etc; these exporters have HTTP endpoint where they make this retrieved data available from where Prometheus Server can poll. Prometheus Server also exposes its own metrics and monitor its own metrics. It stores the retrieved metrics into local files in a custom format but also optionally can integrate with remote storage systems.</p>      <p><a target="_blank" href="https://github.com/prometheus/node_exporter">Node exporter</a> is a Prometheus exporter for hardware and OS metrics exposed by *nix kernels, its written in Go; <a target="_blank" href="https://github.com/martinlindhe/wmi_exporter">WMI exporter</a> is the recommended exporter for Windows based machines that uses WMI for retrieving metrics. There are many exporters available. <a target="_blank" href="https://prometheus.io/docs/instrumenting/exporters">https://prometheus.io/docs/instrumenting/exporters</a> has the list</p>      <p><a target="_blank" href="https://github.com/prometheus/alertmanager">Alertmanager</a> is a seperate component that exposes its API over HTTP; Prometheus Server sends alerts to it. This component supports different alerting channels like Email, Slack etc and takes care of alerting concerns like grouping, silencing, dispatching and retrying etc.</p>      <p><a target="_blank" href="https://grafana.com">Grafana</a> is usually used on top of Prometheus; an open source tool that provides beautiful monitoring and metric analytics and dashboard features. Grafana has notion of data sources from where it collects data; and Prometheus is supported out of box.</p>      <p>For this post; lets consider we have a .NET 4 app; running on an old Windows 2003 box; may be because its integrated with some hardware whose drivers are not available for latest version of Windows restricting ourselves to continue to use this legacy .NET framework version. We want to modernize our app by adding monitoring support and may be some sort of Web API so we can make new components elsewhere and integrate to it. In .NET 4 applications if we want to have a HTTP endpoint; we can either use WebServiceHost class from System.ServiceModel.Web library intended for WCF endpoints (but we can do text/html with it) or there exists an older version of Microsoft.AspNet.WebApi.SelfHost package on Nuget. For our scenario this nuget package suits more as it will enable us to expose Web Api in our application as well.</p>      <p><img width="805" height="380" title="install-package" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="install-package" border="0" src="/images/Prometheus_A469/install-package.png"></p>      <p>In our application Main/Startup code; we need to configure and run the HttpSelfHostServer; to have /status and /metrics pages along with /api http endpoint our configuration will look something like what�s shown in the picture; and then we can simply add a StatusController inheriting from the ApiController and write the required action methods</p>      <p><img width="1037" height="823" title="controller" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="controller" border="0" src="/images/Prometheus_A469/controller.png"></p>      <p>Dont forget to allow the required port in Windows firewall; as later Prometheus will be accessing this http endpoint from a remote machine (from Docker Host/VM) </p>      <p>For the Prometheus; we need to expose our application�s metrics data in the text/plain content type. The format is available at <a title="https://github.com/prometheus/docs/blob/master/content/docs/instrumenting/exposition_formats.md" href="https://github.com/prometheus/docs/blob/master/content/docs/instrumenting/exposition_formats.md">https://github.com/prometheus/docs/blob/master/content/docs/instrumenting/exposition_formats.md</a>; I am just exposing three test metrics. Once we have it running; we can setup Prometheus components and Docker Containers are great way to try out new thing and there exists official images for Prometheus components. I am going to use the following Docker Compose file and using Docker for Windows (or Linux in some VM etc) can bring all these components online with just docker-compose up. For details read <a title="docker-compose.html" href="docker-compose.html">docker-compose.html</a></p>      <p><img width="967" height="960" title="docker-compose" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="docker-compose" border="0" src="/images/Prometheus_A469/docker-compose.png"></p>      <p>In my setup; I have a Node exporter that will expose the Docker VM/Host metrics, an Alertmanager, Prometheus Server and Grafana. All the configuration files for Prometheus components are YML files similar to docker-compose and are included in the repository. These files along with the .NET 4 Console project is available at <a title="https://github.com/khurram-aziz/HelloDocker" href="https://github.com/khurram-aziz/HelloDocker">https://github.com/khurram-aziz/HelloDocker</a> under Prometheus folder</p>      <ul>     <li>Note that Node exporter container is run with host networking and host process namespace so that it can get the metrics of the host and bind its http endpoint on the host ip address.</li>        <li>Prometheus is configured according to my Docker for Windows Networking setting, if its different for you; or you are using Linux host to run the Docker; change it accordingly. You will need to change target addresses of Node exporter and Custom jobs in prometheus.yml</li>   </ul>      <p><img width="1362" height="753" title="docker-networking" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="docker-networking" border="0" src="/images/Prometheus_A469/docker-networking.png"></p>      <p>The Alertmanager is being configured through its config file in a way that if some service that it is polling gets down for two minutes or the Node exporter reports that CPU is 10% or more for two minutes; it will send an alert on Slack. You need to specify the Web hook URL in the config file. Yon can change or add more rules as per your requirements. If you are not using Slack; and want the good old Email alerts; there are documentation and tutorials available online</p>      <ul>     <li>Important thing to note is; you can have Alertmanager setup to send alerts to some database as well; in case you want to log �incidents� for SLA or something</li>   </ul>      <p>If we have all the things setup properly and running; we can check our custom app metrics url and explore Prometheus through its Web interface</p>      <p><a href="/images/Prometheus_A469/prometheus.png"><img width="619" height="480" title="prometheus" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="prometheus" border="0" src="/images/Prometheus_A469/prometheus_thumb.png"></a><a href="/images/Prometheus_A469/prometheus-query.png"><img width="481" height="480" title="prometheus-query" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="prometheus-query" border="0" src="/images/Prometheus_A469/prometheus-query_thumb.png"></a></p>      <p>The Grafana will also be up with �First Dashboard� showing our metrics in the time graph; feel free to play with the dashboard and see that Grafana has the rich Prometheus support, along with its query auto completion etc</p>      <p><a href="/images/Prometheus_A469/grafana.png"><img width="640" height="466" title="grafana" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="grafana" border="0" src="/images/Prometheus_A469/grafana_thumb.png"></a><a href="/images/Prometheus_A469/grafana-prometheus.png"><img width="556" height="480" title="grafana-prometheus" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="grafana-prometheus" border="0" src="/images/Prometheus_A469/grafana-prometheus_thumb.png"></a></p>      <p>Grafana dashboards can be imported and exported as JSON files and there are many <a target="_blank" href="https://grafana.com/dashboards">official and community built dashboards available</a> that we can easily import and start using. For our Node exporter; we can easily find some nice already made dashboard there. We just need the dashboard ID (or its JSON) file and we can easily import it into our Grafana setup</p>      <p><a href="/images/Prometheus_A469/grafana-dashboards.png"><img width="640" height="443" title="grafana-dashboards" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="grafana-dashboards" border="0" src="/images/Prometheus_A469/grafana-dashboards_thumb.png"></a><a href="/images/Prometheus_A469/grafana-718.png"><img width="640" height="389" title="grafana-718" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="grafana-718" border="0" src="/images/Prometheus_A469/grafana-718_thumb.png"></a></p>      <p>For importing from Grafana.com; we just need the ID of the dashboard; and update/configure the data source</p>      <p><img width="640" height="355" title="grafana-import-id" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="grafana-import-id" border="0" src="/images/Prometheus_A469/grafana-import-id.png"><img width="640" height="337" title="grafana-import" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="grafana-import" border="0" src="/images/Prometheus_A469/grafana-import.png"></p>      <p>With few clicks; we will have a beautiful looking dashboard showing the Node exporter metrics</p>      <p><img width="1197" height="669" title="grafana-node-dashboard" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="grafana-node-dashboard" border="0" src="/images/Prometheus_A469/grafana-node-dashboard.png"></p>      <p>We know that Containers are immutable; and our customizations will be lost; unless we are mounting some volume and keeping the data there; or after edit/tweak the dashboard; or creating a new dashboard for our custom metrics; from Dashboard Settings we can export the JSON file. This JSON file then can be imported into our Docker Container when it is built and these dashboards will get provisioned automatically. The Grafana Container in our setup is configured accordingly; you can check Grafana YML and dashboards folder. Simply create a dashboard as per your liking and demand and then export the JSON file and remove its �id� and place the JSON file into the dashboards folder. This <a target="_blank" href="http://docs.grafana.org/administration/provisioning/">Grafana Provisioning</a> feature was introduced in v5</p>      <p>In the repository I have just included one dashboard for our custom metrics; as an exercise try importing some dashboard from Grafana.com first, export its JSON file, place it in dashboards folder and rebuild the container!</p>      <p><img width="1387" height="743" title="grafana-json" style="margin:10px 10px 0px 0px;border:0px currentcolor;border-image:none;display:inline;background-image:none;" alt="grafana-json" border="0" src="/images/Prometheus_A469/grafana-json.png"></p>      <p>Happy Monitoring!</p>      <p>Repository: <a title="https://github.com/khurram-aziz/HelloDocker" href="https://github.com/khurram-aziz/HelloDocker">https://github.com/khurram-aziz/HelloDocker</a></p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

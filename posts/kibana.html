@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Kibana DevTools</title>
+
+  <link rel="canonical" href='/posts/kibana'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Kibana DevTools' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/kibana' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Kibana DevTools
+          </h1>
+            <div class="meta">Published on Saturday, June 1, 2019</div>
+              <div class="mt-3">
+                  <a href="/tags/databases" class="badge text-bg-light"> Databases</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <p><b>Elasticsearch Series</b>    <ul>             <li><a href="elk.html">ELK</a></li>  <li>This Post</li>  <li><a href="beats.html">Beats</a></li>  </ul>      <p>Kibana allows us to work with Elasticsearch in most productive way. From the previous post; lets expose our Elasticsearch server and using its REST APIs; create an “index” and a document in there directly using CURL</p>      <p><a href="/images/Elasticsearch-and-Kibana_CA2C/1-curl.png"><img title="1-curl" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="1-curl" width="644" height="311" src="/images/Elasticsearch-and-Kibana_CA2C/1-curl_thumb.png"></a></p>      <p>You will realize; its quite tedious to work with Elasticsearch this way; especially in Windows Command Prompt where you have to escape the quote character; this is where Dev Tools in Kibana can help us work better.</p>      <p><a href="/images/Elasticsearch-and-Kibana_CA2C/2-devtools.png"><img title="2-devtools" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="2-devtools" width="590" height="484" src="/images/Elasticsearch-and-Kibana_CA2C/2-devtools_thumb.png"></a></p>      <p>The Dev Tools has an option to copy the step as CURL command. Lets continue our API exploration by creating couple of more orders and then searching them</p>      <p><a href="/images/Elasticsearch-and-Kibana_CA2C/3a.png"><img title="3a" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="3a" width="525" height="484" src="/images/Elasticsearch-and-Kibana_CA2C/3a_thumb.png"></a><a href="/images/Elasticsearch-and-Kibana_CA2C/3b.png"><img title="3b" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="3b" width="525" height="484" src="/images/Elasticsearch-and-Kibana_CA2C/3b_thumb.png"></a><a href="/images/Elasticsearch-and-Kibana_CA2C/3c.png"><img title="3c" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="3c" width="525" height="484" src="/images/Elasticsearch-and-Kibana_CA2C/3c_thumb.png"></a><a href="/images/Elasticsearch-and-Kibana_CA2C/3d.png"><img title="3d" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="3d" width="525" height="484" src="/images/Elasticsearch-and-Kibana_CA2C/3d_thumb.png"></a></p>      <ul>     <li>Notice there are special endpoints under different VERBs; like _search in GET to query the data; also notice that Kibana auto completes and we can discover these special urls/endpoints</li>   </ul>      <p>Elasticsearch provides a full Query Domain Specific Language based on JSON to define queries. The query consists of two types of clauses, Leaf query clauses and Compound query clauses. You can learn about this DSL &#64; <a target="_blank" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html</a></p>      <p>We also have the Management section; from where we can manage not only Kibana but also Elasticsearch, in recent versions they have improved this section a lot and have brought over many components from X-PACK (the Elastic.co’s commercial addon) to the free edition. You will notice that our indexes are not healthy; its because the default settings of the indexes dictates to have multiple shards (distributing data across many buckets) and to have replicas. Given we have a single node; we can change the index settings by putting our new index settings document under /_template having appropriate index_patterns</p>      <p><a href="/images/Elasticsearch-and-Kibana_CA2C/4a.png"><img title="4a" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="4a" width="538" height="484" src="/images/Elasticsearch-and-Kibana_CA2C/4a_thumb.png"></a><a href="/images/Elasticsearch-and-Kibana_CA2C/4b.png"><img title="4b" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="4b" width="538" height="484" src="/images/Elasticsearch-and-Kibana_CA2C/4b_thumb.png"></a></p>      <ul>     <li>With the above number_of_shards and number_of_replicas settings; if we delete the existing indexes (using Index Management) and recreate them; we should now see healthy / green indexes</li>   </ul>      <p>We can find the above created template and other templates using GET /_cat/templates endpoint. To view the selected template; use GET /_template/template-name endpoint. In previous post we used Logstash; it creates a template for its indexes as well; lets investigate this template.</p>      <p><a href="/images/Elasticsearch-and-Kibana_CA2C/5a.png"><img title="5a" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="5a" width="601" height="484" src="/images/Elasticsearch-and-Kibana_CA2C/5a_thumb.png"></a><a href="/images/Elasticsearch-and-Kibana_CA2C/5b.png"><img title="5b" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="5b" width="601" height="484" src="/images/Elasticsearch-and-Kibana_CA2C/5b_thumb.png"></a></p>      <ul>     <li>Notice the mappings section; and how geoip field is defined</li>   </ul>      <p>In the previous post in which we used geoip plugin to transform the ufw_src_ip field to user friendly geolocation fields and drew them on the Map. It could only happen if we use logstash-* index names; if we want different index names; say ufw-<em>; we can now add a template for ufw-</em> pattern having this geoip field definition; and we should be able to use the Map Visualization with our custom ufw-* indexes</p>      <ul>     <li>As an exercise; go ahead and change index name from logstash-* to ufw-* in the work done in previous post</li>   </ul>      <p>Our /orders index has an issue; the orderAmount field is not numeric data type and this becomes issue when using range queries; for instance if we search for orders having more than or equal to 500 amount; an order having amount 99 will also appear; because as string 99 =&gt; 500. To fix this issue; we can either use template having appropriate mappings section or we can use mappings when creating an index. If we have multiple indexes on some pattern; say orders-<em>; we can search across them using GET /pattern/_search endpoint</p>      <p><a href="/images/Elasticsearch-and-Kibana_CA2C/6a.png"><img title="6a" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="6a" width="454" height="484" src="/images/Elasticsearch-and-Kibana_CA2C/6a_thumb.png"></a><a href="/images/Elasticsearch-and-Kibana_CA2C/6b.png"><img title="6b" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="6b" width="601" height="484" src="/images/Elasticsearch-and-Kibana_CA2C/6b_thumb.png"></a></p>      <p>Given we now have the properly typed fields, we can now use Aggregations</p>      <p><a href="/images/Elasticsearch-and-Kibana_CA2C/7.png"><img title="7" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="7" width="644" height="421" src="/images/Elasticsearch-and-Kibana_CA2C/7_thumb.png"></a></p>      <ul>     <li>Elasticsearch has comprehensive Aggregation framework that we can use to build simple to complex data summaries; visit <a title="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html" target="_blank" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html</a> for more details</li>   </ul>      <p>There are some interesting endpoints under GET /_cat; for instance _cat/health for the cluster health; _cat/nodes for the nodes health in the cluster and _cat/indices for listing indexes along with their health. If JSON formatted data is not that readable; we can postfix these endpoints with ?v and it will give us the information in the plain text</p>      <p><img title="8" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="8" width="1392" height="358" src="/images/Elasticsearch-and-Kibana_CA2C/8.png"></p>      <p>To use Kibana’s Discover and Visualize tools; we can define the Kibana Index pattern say orders-</em> so it can include our orders-YYYY.MM.DD Elasticsearch indexes; and using Discover tool; we can view and use Kibana’s Query Language (KQL) which is introduced in recent versions of Kibana or Apache Lucene syntax to search / query our data</p>      <p><a href="/images/Elasticsearch-and-Kibana_CA2C/9a.png"><img title="9a" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="9a" width="644" height="383" src="/images/Elasticsearch-and-Kibana_CA2C/9a_thumb.png"></a><a href="/images/Elasticsearch-and-Kibana_CA2C/9b.png"><img title="9b" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="9b" width="644" height="383" src="/images/Elasticsearch-and-Kibana_CA2C/9b_thumb.png"></a></p>      <p>The queries used above are added into Elk folder &#64; <a target="_blank" href="https://github.com/khurram-aziz/HelloDocker">https://github.com/khurram-aziz/HelloDocker</a></p>      <ul>     <li>Go ahead and try to use Visualization and Dashboard tools</li>   </ul>      <p><img title="10" style="margin:10px 10px 0px 0px;display:inline;background-image:none;" border="0" alt="10" width="928" height="783" src="/images/Elasticsearch-and-Kibana_CA2C/10.png"></p></p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

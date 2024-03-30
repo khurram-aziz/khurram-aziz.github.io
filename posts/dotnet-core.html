@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Dotnet Core</title>
+
+  <link rel="canonical" href='/posts/dotnet-core'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Dotnet Core' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/dotnet-core' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Dotnet Core
+          </h1>
+            <div class="meta">Published on Thursday, March 9, 2017</div>
+              <div class="mt-3">
+                  <a href="/tags/net" class="badge text-bg-light"> .NET</a>
+                  <a href="/tags/asp.net" class="badge text-bg-light"> ASP.NET</a>
+                  <a href="/tags/linux" class="badge text-bg-light"> Linux</a>
+                  <a href="/tags/visual-studio" class="badge text-bg-light"> Visual Studio</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <p><b>Dotnet Core Series</b></p>  <ul>      <li>This Post</li>      <li><a href="redis-clients-asp-net-core.html" target="_blank">Redis Clients -- ASP.NET Core</a></li>      <li><a href="docker-registry.html" target="_blank">Docker Registry</a></li>      <li><a href="jenkins.html" target="_blank">Jenkins</a></li>      <li><a href="dotnetcore-postgresql.html" target="_blank">Dotnet Core -- PostgreSQL</a></li>  </ul>        <p>This post is a quick lap around Dotnet Core; especially on Linux and Containers. Dotnet Core&nbsp;is an open source .NET implementation and is also available for different flavors of Linux. We know how cool .NET is and how great it is now to&nbsp;use C# to develop and deploy applications on the black screen OSes :) As long as you are using fairly newer Linux distributions you are able to install Dotnet Core. Installation information and downloads are available at <a href="https://www.microsoft.com/net/core">https://www.microsoft.com/net/core</a>; there are currently 1.0 LTS version and 1.1 CURRENT version available. At the time of writing; 1.0.4 and 1.1.1 versions are the most recent available at <a href="https://www.microsoft.com/net/download/linux">https://www.microsoft.com/net/download/linux</a></p>      <p>If you want to create, build and package the code; you need SDK; else if you already have a compiled application available to run; only RUNTIME is sufficient. SDK installs the the Runtime as well. They have released v1 as SDK recently; and if you installed the SDK earlier; you might have the “preview” SDK; you can check it using dotnet binary with –version</p>      <p><img width="1029" height="146" title="dotnet-preview" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="dotnet-preview" src="/images/DotNet-Core_B148/dotnet-preview.png" border="0"></p>      <p>They initially opted for JSON based project file (similar to NPM); which gets created when dotnet new was used that creates the Hello World Dotnet Core console application</p>      <p><img width="582" height="123" title="dotnet-preview-structure" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="dotnet-preview-structure" src="/images/DotNet-Core_B148/dotnet-preview-structure.png" border="0"></p>      <ul>     <li>The lock file gets created on dotnet restore </li>   </ul>      <p>We do dotnet restore; that restores the dependencies defined in&nbsp;the project.json from Nuget; an online library distribution service. And then we can do dotnet build and dotnet run to build and run our application. If we want a minimalist Hello World web application in Dotnet Core; we can use Microsoft.AspNetCore.Server.Kestrel package from Nuget that is a HTTP server&nbsp;based on libuv;&nbsp;we define this package dependency in project.json and then change the Program.cs file to this</p>       <pre class="csharpcode"><span class="kwrd">using</span> Microsoft.AspNetCore.Hosting;  <span class="kwrd">using</span> Microsoft.AspNetCore.Builder;  <span class="kwrd">using</span> Microsoft.AspNetCore.Http;  <span class="kwrd">public</span> <span class="kwrd">class</span> Program  {      <span class="kwrd">public</span> <span class="kwrd">static</span> <span class="kwrd">void</span> Main()      {          <span class="kwrd">new</span> WebHostBuilder()                  .UseKestrel()                  .UseUrls(<span class="str">"http://127.0.0.1:3000"</span>)                  .Configure(a =&gt; a.Run(c =&gt; c.Response.WriteAsync(<span class="str">"Hello World!"</span>)))                  .Build()                  .Run();      }  }</pre>    <p>Finding and adding Nuget package reference in the JSON file was a manual work; there is a Visual Studio Code extension that we used in the <a href="zookeeper.html" target="_blank">Zookeeper</a> post that we can use to find / add Nuget package dependencies into project.json like Kestrel above if we are using Visual Studio Code; which is also an open source editor. This is all now not required with the brand new non preview&nbsp;(now released) SDK.</p>    <p>The SDK version is 1.x; and there are two runtimes; 1.x LTS and 1.1 CURRENT; the Dotnet Core&nbsp;1.1 SDK&nbsp;is&nbsp;1.x SDK :)</p>    <p><img width="843" height="511" title="dotnet-install-sdk" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="dotnet-install-sdk" src="/images/DotNet-Core_B148/dotnet-install-sdk.png" border="0"></p>    <ul>      <p><img width="799" height="969" title="dotnet-new" align="right" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;float:right;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="dotnet-new" src="/images/DotNet-Core_B148/dotnet-new.png" border="0"></p>  </ul>    <p>Installing SDK; install the Runtimes as well</p>    <ul>      <li>If you are on Ubuntu / Debian and want to uninstall the preview; simply use dpkg –l | grep dotnet to find out the package names and then apt-get purge package1 package2 etc to uninstall </li>        <li>They have also made available an uninstall script at <a title="https://github.com/dotnet/cli/blob/rel/1.0.0/scripts/obtain/uninstall/dotnet-uninstall-debian-packages.sh" href="https://github.com/dotnet/cli/blob/rel/1.0.0/scripts/obtain/uninstall/dotnet-uninstall-debian-packages.sh">https://github.com/dotnet/cli/blob/rel/1.0.0/scripts/obtain/uninstall/dotnet-uninstall-debian-packages.sh</a> that you can use instead </li>        <li>Once uninstalled; get the latest downloads from <a title="https://www.microsoft.com/net/download/core" href="https://www.microsoft.com/net/download/core">https://www.microsoft.com/net/download/core</a> </li>        <li>Step by step installation guide is also available there </li>  </ul>    <p>With released SDK; when we do dotnet new to create the project; it now creates a CSPROJ file thats XML and is very clean / minimal similar to JSON; given you didnt specified F# as the language</p>    <p><img width="495" height="163" title="dotnet-structure" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="dotnet-structure" src="/images/DotNet-Core_B148/dotnet-structure.png" border="0"></p>    <ul>      <li>dotnet binary now can create different types of project; including web; so we dont have to do anything special for the web project </li>        <li>We also dont need any special extension of Visual Studio Code to add Nuget references; we can use dotnet binary to add Nuget packages using dotnet add package Nuget-Package-Name; this means that even if we are not using any editor; we can do this easily using the SDK only; very useful in Linux Server environments where there is usually no GUI! </li>  </ul>    <p>Now lets switch gear and try to build a simple Docker Container for Dotnet Core web application. We will use dotnet new web similar to the screenshot; this web application will be connecting to the Redis Server and for this; we need some .NET library that's also compatible with Dotnet Core; StackExchange.Redis is one such library; to add this package into our Dotnet Core web project; we will issue</p>    <p>dotnet add package StackExchange.Redis</p>    <ul>      <li>Don't forget to restore the packages after adding them </li>  </ul>    <p>We will not do anything further for this post; we will simply publish the Release build of our application into the “output” folder using dotnet publish –c Release –o output</p>    <p>And then create a Dockerfile with following content</p>      <pre class="csharpcode">FROM microsoft/dotnet:1.1-runtime  WORKDIR /app  COPY <span class="kwrd">output</span> .  ENV ASPNETCORE_URLS http:<span class="rem">//+:80</span>  EXPOSE 80  ENTRYPOINT [<span class="str">"dotnet"</span>, <span class="str">"Redis.dll"</span>]</pre>    <ul>      <li>Before building the container;&nbsp;the application should be&nbsp;published into the output folder that will get included into the /app directory in&nbsp;the container  &nbsp;   &nbsp; </li>    <li>Dotnet core uses an environment variable ASPNET_CORE_URLS and setup the Kestrel accordingly; here we are running our web application at http://*:80; meaning at port 80; the default HTTP port on all the ips of the containers</li>        <li>We need to expose container’s 80 port as well</li>  </ul>    <p>We can build this Docker image using docker build –t some-tag .</p>    <p>Once the image is created; we can run it using docker run and mapping its 80 port; something like</p>    <p>docker run –rm –p 5000:80 some-tag</p>    <p>And we can access our Hello World Dotnet Core web application at http://localhost:5000</p>    <p><img width="628" height="689" title="dotnet-docker" style="border-top:0px;border-right:0px;background-image:none;border-bottom:0px;padding-top:0px;padding-left:0px;border-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;" alt="dotnet-docker" src="/images/DotNet-Core_B148/dotnet-docker.png" border="0"></p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

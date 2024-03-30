@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Rancher Infrastructure Services</title>
+
+  <link rel="canonical" href='/posts/rancher-infrastructure-services'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Rancher Infrastructure Services' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/rancher-infrastructure-services' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Rancher Infrastructure Services
+          </h1>
+            <div class="meta">Published on Tuesday, August 9, 2016</div>
+              <div class="mt-3">
+                  <a href="/tags/docker" class="badge text-bg-light"> Docker</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <h2>Rancher Series</h2>  <ul>   <li>Part 1: <a title="RancherOS" href="rancheros.html">RancherOS</a> </li>    <li>Part 2: <a title="Rancher–First Application" href="rancher-first-application.html">Rancher–First Application</a> </li>    <li>Part 3: <a title="Rancher Infrastructure Services" href="rancher-infrastructure-services.html">Rancher Infrastructure Services</a> </li>    <li>Part 4: <a title="Floating IP and Containers" href="floating-ip-and-containers.html">Floating IP and Containers</a> </li> </ul>  <p>Rancher provides Infrastructure Services; many of which we used to <a href="rancher-first-application.html" target="_blank">run our first application</a>.</p>  <p>It provides Networking service; which gives 172.17.0.0/16 Docker bridge ips and 10.42.0.0/16 Rancher managed ips. It then setups a secure network using IPsec tunnels that enables cross host container communication. Using this our web containers were able to connect to MongoDB containers across multiple hosts seamlessly.</p>  <p>We also saw Load Balancer service; that uses HAProxy and it not only scale to multiple hosts but when we “linked” our web service to it; it also find them across multiple hosts and uses all of them as load balancer targets.</p>  <p>It provides a DNS service; when we linked MongoDB cluster into the web server container; we were able to ping all the containers with the service alias; we could use the DNS name of our linked server instead of giving multiple IPs; but we had to setup Mongoose accordingly that we are connecting to a cluster and not to a single MongoDB host</p>  <p>It also provides Metadata service; that we will see more in this post, Persistent Storage Service; using which we can expose volumes to our containers; topic of upcoming Post, Audit Logging; using which admins can view who is configuring what in the environment using the admin web interface and Service Accounts; using which we can make applications that can interact with Rancher using its API</p>  <p>Using Metadata service; we can query the data Rancher is maintaining for the environment. Its a HTTP based API and data is spitted out in JSON format. To try it out; I created a “Standalone Container” using <a href="https://hub.docker.com/_/debian/" target="_blank">debian</a>; and installed CURL (apt-get install curl). The API end point is http://rancher-metadata; which is made available through Rancher’s DNS service to the container; there are two versions; I used 2015-12-19. The version is appended to the URL and then we need to add different paths for different queries. Here’s the screenshot of some of the queries that I tried to find out if the Load Balancer of our first application is running or not!</p>  <p><img title="rancher-metadata" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="curl - metadata" src="/images/Rancher-Infrastructure-Services_9F68/image.png" width="821" height="509" /></p>  <ul>   <li>     <p>To access RancherOS machine using PuTTY; you first need to create PuTTY PPK file using PuTTY Key Generator; import the id_rsa file that has our private key that we generated using Git Tools while installing RancherOS and save this private key; the PuTTY key generator will make a PPK file; keep it in the same %UserProfile%\.ssh folder; and then connect to your RancherOS machine using &gt;putty –i %UserProfile%\.ssh\id_rsa.ppk <a href="mailto:rancher@YourRancherOSMachineIP">rancher&#64;YourRancherOSMachineIP</a></p>   </li> </ul>  <h2>Resource</h2>  <ul>   <li><a href="http://docs.rancher.com/rancher/latest/en/rancher-services/metadata-service/">http://docs.rancher.com/rancher/latest/en/rancher-services/metadata-service/</a> </li> </ul>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>
