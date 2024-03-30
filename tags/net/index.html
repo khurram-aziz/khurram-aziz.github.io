@@ -156,13 +156,27 @@
 </div>
 
 
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/net-4-countdownevent">.NET 4 - CountdownEvent</a></h2>
+  <p class="post-meta">Published on Friday, October 23, 2009</p>
+<p>A while ago I was asked to complete a job that polls a data from many devices connected over satellite (slow and congested) links. The requirement was to poll data periodically; and somtimes while previous poll cycle was running the next poll time gets triggered. I used the <a href="http://msdn.microsoft.com/en-us/magazine/dvdarchive/cc163644.aspx" target="_blank">Abortable Threadpool</a> to implement this but still had to implement my own Count Down approach so that I can track if the job gets completed in the alloted time; it simply returns else after the allowed time; it aborts all the remaining queued work! It was really ugly implementation; I had to periodically check if the completed count has reached the queued work count. Now we have a new class in .NET; CountdownEvent; which exactly does the same. Its a synchronization primitive that signals when its count is reached zero. The code now looks neat!</p>    <p class="small"><a href="/posts/net-4-countdownevent">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/net-4-barrier-class">.NET 4 - Barrier Class</a></h2>
+  <p class="post-meta">Published on Friday, October 23, 2009</p>
+<p>Barrier class is newly introduced in .NET 4 and it enables the multiple tasks to cooperatively work on an algorithm in parallel through multiple phases. For instance you are polling the data from multiple data source; and this polling is multi step process. While polling in parallel you want coordination that on each step the parallel running tasks before moving to next step coordinate with each other. <a href="http://www.microsoft.com/downloads/details.aspx?familyid=752CB725-969B-4732-A383-ED5740F02E93&amp;amp;displaylang=en" target="_blank">Visual Studio 2010 and .NET Framework 4 Training Kit (October Preview)</a> has a great sample which I am reproducing below!</p>    <p class="small"><a href="/posts/net-4-barrier-class">Read more...</a></p>
+</div>
+
+
       </div>
       <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
           <a href="/tags/docker" class="badge text-bg-light"> Docker (14)</a>
           <a href="/tags/system-administration" class="badge text-bg-light"> System Administration (12)</a>
           <a href="/tags/linux" class="badge text-bg-light"> Linux (12)</a>
           <a href="/tags/databases" class="badge text-bg-light"> Databases (10)</a>
-          <a href="/tags/net" class="badge text-bg-dark"> .NET (8)</a>
+          <a href="/tags/net" class="badge text-bg-dark"> .NET (10)</a>
           <a href="/tags/observability" class="badge text-bg-light"> Observability (6)</a>
           <a href="/tags/node" class="badge text-bg-light"> Node (6)</a>
           <a href="/tags/asp.net" class="badge text-bg-light"> ASP.NET (4)</a>

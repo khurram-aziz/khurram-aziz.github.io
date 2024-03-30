@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Khurram Aziz - Tags</title>
+  <title>Khurram Aziz - .NET 4 - CountdownEvent</title>
 
-  <link rel="canonical" href='/tags'>
+  <link rel="canonical" href='/posts/net-4-countdownevent'>
 
       <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
       <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
@@ -17,9 +17,9 @@
   <meta name="msapplication-tooltip" content='Khurram Aziz' />
   <meta name="msapplication-starturl" content='/' />
 
-  <meta property="og:title" content='Khurram Aziz - Tags' />
+  <meta property="og:title" content='Khurram Aziz - .NET 4 - CountdownEvent' />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content='/tags' />
+  <meta property="og:url" content='/posts/net-4-countdownevent' />
 
   <link rel="icon" href='/favicon.ico'>
 
@@ -79,10 +79,14 @@
   <div class="container position-relative">
     <div class="row">
       <div class="col-md-12">
-        <div class='site-heading'>
+        <div class='post-heading'>
           <h1>
-            Tags
+            .NET 4 - CountdownEvent
           </h1>
+            <div class="meta">Published on Friday, October 23, 2009</div>
+              <div class="mt-3">
+                  <a href="/tags/net" class="badge text-bg-light"> .NET</a>
+              </div>
         </div>
       </div>
     </div>
@@ -94,23 +98,38 @@
   <div class="container">
     <div class="row">
       <div id="content" class="col-md-12">
-            <a role="button" href="/tags/docker" class="badge text-bg-light"> Docker (14)</a>
-    <a role="button" href="/tags/system-administration" class="badge text-bg-light"> System Administration (12)</a>
-    <a role="button" href="/tags/linux" class="badge text-bg-light"> Linux (12)</a>
-    <a role="button" href="/tags/databases" class="badge text-bg-light"> Databases (10)</a>
-    <a role="button" href="/tags/net" class="badge text-bg-light"> .NET (10)</a>
-    <a role="button" href="/tags/observability" class="badge text-bg-light"> Observability (6)</a>
-    <a role="button" href="/tags/node" class="badge text-bg-light"> Node (6)</a>
-    <a role="button" href="/tags/asp.net" class="badge text-bg-light"> ASP.NET (4)</a>
-    <a role="button" href="/tags/visual-studio" class="badge text-bg-light"> Visual Studio (4)</a>
-    <a role="button" href="/tags/raspberry-pi" class="badge text-bg-light"> Raspberry Pi (3)</a>
-    <a role="button" href="/tags/esp8266" class="badge text-bg-light"> ESP8266 (2)</a>
-    <a role="button" href="/tags/iot" class="badge text-bg-light"> IoT (2)</a>
-    <a role="button" href="/tags/devops" class="badge text-bg-light"> DevOps (2)</a>
-    <a role="button" href="/tags/windows" class="badge text-bg-light"> Windows (2)</a>
-    <a role="button" href="/tags/arduino" class="badge text-bg-light"> Arduino (1)</a>
-    <a role="button" href="/tags/entity-framework" class="badge text-bg-light"> Entity Framework (1)</a>
-    <a role="button" href="/tags/python" class="badge text-bg-light"> Python (1)</a>
+        <p>A while ago I was asked to complete a job that polls a data from many devices connected over satellite (slow and congested) links. The requirement was to poll data periodically; and somtimes while previous poll cycle was running the next poll time gets triggered. I used the <a href="http://msdn.microsoft.com/en-us/magazine/dvdarchive/cc163644.aspx" target="_blank">Abortable Threadpool</a> to implement this but still had to implement my own Count Down approach so that I can track if the job gets completed in the alloted time; it simply returns else after the allowed time; it aborts all the remaining queued work! It was really ugly implementation; I had to periodically check if the completed count has reached the queued work count. Now we have a new class in .NET; CountdownEvent; which exactly does the same. Its a synchronization primitive that signals when its count is reached zero. The code now looks neat!</p>
+<pre><code class="language-csharp">using System.Collections.Generic;
+using System.Threading;
+
+class DevicePoller
+{
+    public void PollAndProcessData() { }
+}
+
+class HelloWorld
+{
+    void Example(IEnumerable&lt;DevicePoller&gt; devicePollers)
+    {
+        using (var countdown = new CountdownEvent(1))
+        {
+            foreach (var devicePoller in devicePollers)
+            {
+                countdown.AddCount();
+                ThreadPool.QueueUserWorkItem(delegate
+                {
+                    devicePoller.PollAndProcessData();
+                    countdown.Signal();
+                });
+            }
+            countdown.Signal();
+            countdown.Wait();
+        }
+    }
+}
+</code></pre>
+
+
 
         
 
