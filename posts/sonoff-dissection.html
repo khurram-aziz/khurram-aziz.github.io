@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Sonoff Dissection</title>
+
+  <link rel="canonical" href='/posts/sonoff-dissection'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Sonoff Dissection' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/sonoff-dissection' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Sonoff Dissection
+          </h1>
+            <div class="meta">Published on Saturday, January 28, 2017</div>
+              <div class="mt-3">
+                  <a href="/tags/arduino" class="badge text-bg-light"> Arduino</a>
+                  <a href="/tags/esp8266" class="badge text-bg-light"> ESP8266</a>
+                  <a href="/tags/iot" class="badge text-bg-light"> IoT</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <p><b>ESP8266 Series</b></p>
+<ul>
+  <li><a title="Blink" href="/posts/blink.html">Blink</a></li>
+  <li><a title="Arduino core for ESP8266 WiFi chip" href="/posts/arduino-core-ESP8266.html">Arduino core for ESP8266 WiFi chip</a></li>
+  <li><a title="Sonoff Dissection" href="/posts/sonoff-dissection.html">Sonoff Dissection</a></li>
+  <li><a title="MQ Telemetry Transport" href="/posts/mqtt.html">MQ Telemetry Transport</a></li>
+  <li><a title="Firmata" href="/posts/firmata.html">Firmata</a></li>
+  <li><a title="Johnny-Five" href="/posts/johnny-five.html">Johnny-Five</a></li>
+</ul>
+<p><a href="https://www.itead.cc/sonoff-wifi-wireless-switch.html" target="_blank">Sonoff</a> is a Wifi Smart Switch produced by ITEAD that you can get from China for cheap. This switch can be used for Smart Home / Enterprise solutions. You can connect it to 90V-250V / 10A AC line and can control it over Wifi</p>  <p><img title="sonoff-smartswitch" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="sonoff-smartswitch" src="/images/Sonoff-Dissection_EB68/sonoff-smartswitch.jpg" width="640" height="360" /></p>  <p>If we cut it open; we will find its a 10A Relay connected to ESP8266 (1Mb model) based switch with required Power regulatory circuit, and good thing about this switch is that they have exposed the TTL and GPIO pins making it very DIY/Maker/Hacker friendly. We can solder Male Headers to these pins; either by our self or seek some help from some road side Radio / Repair shop</p>  <p><img title="sonoff-ttl" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="sonoff-ttl" src="/images/Sonoff-Dissection_EB68/sonoff-ttl.jpg" width="640" height="360" /></p>  <p><img title="sonoff-esp8266-1mb" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="sonoff-esp8266-1mb" src="/images/Sonoff-Dissection_EB68/sonoff-esp8266-1mb.jpg" width="640" height="359" /></p>  <p>We need to connect that Square pin and three pins above for powering ESP8266; its Microcontroller Unit (MCU) and for Serial TTL.</p>  <p><img title="sonoff-soldering" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="sonoff-soldering" src="/images/Sonoff-Dissection_EB68/sonoff-soldering.jpg" width="640" height="360" /></p>  <p>The Square pin; the closest to the Reset is Power; the next two are RX and TX and the fourth one is Ground. Once soldered; we can connect the jumper wires to these male headers</p>  <p><img title="sonoff-maleheaders" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="sonoff-maleheaders" src="/images/Sonoff-Dissection_EB68/sonoff-maleheaders.jpg" width="640" height="360" /></p>  <p><img title="sonoff-pins" style="border-top:0px;border-right:0px;background-image:none;border-bottom:0px;padding-top:0px;padding-left:0px;border-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;" border="0" alt="sonoff-pins" src="/images/Sonoff-Dissection_EB68/sonoff-pins.jpg" width="750" height="424" /></p>  <p>Above picture from: <a title="http://randomnerdtutorials.com/reprogram-sonoff-smart-switch-with-web-server/" href="http://randomnerdtutorials.com/reprogram-sonoff-smart-switch-with-web-server/">http://randomnerdtutorials.com/reprogram-sonoff-smart-switch-with-web-server/</a></p>  <p>Next we need USB – TTL Adapter; get the one that has 3.3V / 5V setting; we need to power it with 3.3V. I am using a cheap CH340 based USB-TTL Adapter</p>  <p><img title="sonoff-usb-ttl" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="sonoff-usb-ttl" src="/images/Sonoff-Dissection_EB68/sonoff-usb-ttl.jpg" width="640" height="360" /></p>  <p>Keep the reset button pressed when power it up; it will take the on board ESP8266 into programming mode; and USB port will get connected and you will be able to connect to it either from ESP8266 Flasher and flash NodeMCU; like we did in the <a title="Blink" href="/posts/blink.html">Blink</a> post or use Arduino Core for ESP8266 and make a custom firmware similar to <a title="Arduino core for ESP8266 WiFi chip" href="/posts/arduino-core-ESP8266.html">Arduino core for ESP8266 WiFi chip</a> post. The onboard LED is connected to ESP8266’ pin 13 and the relay is connected to pin 12. You can open these both pins as OUTPUT and writing HIGH to pin 12 where relay is connected; the switch will turn on allowing the AC current to flow and writing LOW will disconnect.</p>  <p>Using this information; I wrote one such firmware that's being demoed in this video; PI3 along with power adapter is connected as the appliance; and we can turn it on or off “remotely” using the web interface; similar to <a title="Arduino core for ESP8266 WiFi chip" href="/posts/arduino-core-ESP8266.html">Arduino core for ESP8266 WiFi chip</a> post where we were turning the led on or off</p> <iframe height="315" src="https://www.youtube.com/embed/jpA9NySETUM" frameborder="0" width="560"></iframe>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>

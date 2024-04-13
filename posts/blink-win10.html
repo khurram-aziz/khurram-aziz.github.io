@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Blink with Windows 10 IoT</title>
+
+  <link rel="canonical" href='/posts/blink-win10'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Blink with Windows 10 IoT' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/blink-win10' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Blink with Windows 10 IoT
+          </h1>
+            <div class="meta">Published on Friday, January 27, 2017</div>
+              <div class="mt-3">
+                  <a href="/tags/iot" class="badge text-bg-light"> IoT</a>
+                  <a href="/tags/node" class="badge text-bg-light"> Node</a>
+                  <a href="/tags/raspberry-pi" class="badge text-bg-light"> Raspberry Pi</a>
+                  <a href="/tags/windows" class="badge text-bg-light"> Windows</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <p><b>Blink Series</b></p>  <ul>   <li><a title="Blink" href="/posts/blink.html">Blink</a> </li>    <li><a title="Blink with Windows 10 IoT" href="/posts/blink-win10.html">Blink with Windows 10 IoT</a> </li>    <li><a href="/posts/blink-android-things.html">Blink with Android Things</a> </li> </ul>  <p>They say they designed this edition of Windows for Internet of Things; and its part of their “universal device platform” vision. With Anniversary Edition; its now called Windows 10 IoT Core; and is available from <a title="https://developer.microsoft.com/en-us/windows/iot" href="https://developer.microsoft.com/en-us/windows/iot" target="_blank">https://developer.microsoft.com/en-us/windows/iot</a>; Raspberry Pi 2 and 3 along with couple of other boards are supported. Last time I tried it on Pi 2; and couldn't found the compatible Wifi USB Dongle but thankfully Pi 3 has built in Wifi&nbsp;and it&nbsp;works&nbsp;seamlessly now; they have also improved device compatibility a little.</p>  <p>From the developer portal; you select the supported board and the the Windows version; either Anniversary one or the Insider Preview one; for Anniversary; it downloads the Windows 10 IoT Core Dashboard, a ClickOnce desktop application, using which you can download the OS image and prepare the SD Card. Connect the board with the Ethernet and Dashboard will find it (given you are on in same subnet); once you have the IP; you can open its Device Portal and from there you can change the Administrator password and setup Wifi. Alternately; you can connect the monitor/screen on PI’s HDMI and connect Mouse/Keyboard and setup the Wifi from the console!</p>  <ul>   <li>The dashboard offers to set the Administrator password; but in my case it didn't work and OS had default password; which is p&#64;ssw0rd (Zero r d) </li> </ul>  <p>For the development; given its part of “universal device platform”; you need Visual Studio 2015 and the Windows SDK for Anniversary Edition. Install the Windows 10 IoT Core Project Templates from <a title="https://www.visualstudiogallery.msdn.microsoft.com/55b357e1-a533-43ad-82a5-a88ac4b01dec" href="https://www.visualstudiogallery.msdn.microsoft.com/55b357e1-a533-43ad-82a5-a88ac4b01dec" target="_blank">https://www.visualstudiogallery.msdn.microsoft.com/55b357e1-a533-43ad-82a5-a88ac4b01dec</a> (or <a title="https://marketplace.visualstudio.com/items?itemName=MicrosoftIoT.WindowsIoTCoreProjectTemplates" href="https://marketplace.visualstudio.com/items?itemName=MicrosoftIoT.WindowsIoTCoreProjectTemplates" target="_blank">https://marketplace.visualstudio.com/items?itemName=MicrosoftIoT.WindowsIoTCoreProjectTemplates</a>) that installs the C#, Visual Basic and C++ project templates for Background Application (IoT). If you create a C# project using this; it creates a class implementing the required interface having single Run method with IBackgroundTaskInstance parameter. For the “Blink”; we will need a ThreadPoolTimer that will blink our LED using GpIoPin class that we get from GpIoController. These GPIO related classes are in Windows.Devices.Gpio namespace from the Microsoft.NETCore.UniversalWindowsPlatform package that's already setup when we create the project. Here’s the code that we need in the Run()</p>  <blockquote>   <p><font face="Courier New">public void Run(IBackgroundTaskInstance taskInstance)        <br>{         <br>&nbsp;&nbsp;&nbsp; // TODO: Insert code to perform background work         <br>&nbsp;&nbsp;&nbsp; //         <br>&nbsp;&nbsp;&nbsp; // If you start any asynchronous methods here, prevent the task         <br>&nbsp;&nbsp;&nbsp; // from closing prematurely by using BackgroundTaskDeferral as         <br>&nbsp;&nbsp;&nbsp; // described in </font><a href="http://aka.ms/backgroundtaskdeferral"><font face="Courier New">http://aka.ms/backgroundtaskdeferral</font></a></p>    <p><font face="Courier New">&nbsp;&nbsp;&nbsp; var deferral = taskInstance.GetDeferral();</font></p>    <p><font face="Courier New">&nbsp;&nbsp;&nbsp; var gpio = GpioController.GetDefault();        <br>&nbsp;&nbsp;&nbsp; if (null == gpio) return;</font></p>    <p><font face="Courier New">&nbsp;&nbsp;&nbsp; var pin = gpio.OpenPin(17);        <br>&nbsp;&nbsp;&nbsp; if (null == pin) return;</font></p>    <p><font face="Courier New">&nbsp;&nbsp;&nbsp; pin.SetDriveMode(GpioPinDriveMode.Output);</font></p>    <p><font face="Courier New">&nbsp;&nbsp;&nbsp; var toWrite = GpioPinValue.High;        <br>&nbsp;&nbsp;&nbsp; var timer = ThreadPoolTimer.CreatePeriodicTimer(delegate         <br>&nbsp;&nbsp;&nbsp; {         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pin.Write(toWrite);         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (toWrite == GpioPinValue.High)         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; toWrite = GpioPinValue.Low;         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; toWrite = GpioPinValue.High;         <br>&nbsp;&nbsp;&nbsp; }, TimeSpan.FromMilliseconds(1000));         <br>}</font></p> </blockquote>  <ul>   <li>LED’s Positive/Anode side is connected to BCM GPIO 17 (GPIO0) / Header Pin 11 and its Negative/Cathode side is connected to Header Pin 6 (OV) similar to <a title="/posts/blink.html" href="/posts/blink.html" target="_blank">/posts/blink.html</a> (Raspberry Pi Pin Layout is given on this previous post) </li>    <li>Given this background task will get triggered “once” and there is no “loop” concept like in Arduino; we need to setup a timer for LED blinking, and we want to continue to run our task while timer is “ticking” we can get “Deferral” from taskInstance and if we do that and don't call its “Commit” our task will continue to run. </li> </ul>  <p>We can use Visual Studio to deploy and run the application (select ARM and Remote Machine) or we can create App Package (Project &gt; Store) and upload our application and its certificate using the “Device Portal”. Using the Device Portal; we can also set it up as “Startup” application so it will run automatically on boot.</p>  <p><img width="956" height="526" title="device-portal" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="device-portal" src="/images/Blink-with-Windows-10-IoT_A75D/device-portal.jpg" border="0"></p>  <ul>   <li><a title="https://developer.microsoft.com/en-us/windows/iot/docs/backgroundapplications" href="https://developer.microsoft.com/en-us/windows/iot/docs/backgroundapplications">https://developer.microsoft.com/en-us/windows/iot/docs/backgroundapplications</a> has more information developing background applications </li> </ul>  <p>Given its; Windows; we can make our Blink application as a typical User Interface / Forground as well; and can have routine XAML based visual interface in the application to blink the LED. <a title="https://developer.microsoft.com/en-us/windows/iot/samples/helloworld" href="https://developer.microsoft.com/en-us/windows/iot/samples/helloworld" target="_blank">https://developer.microsoft.com/en-us/windows/iot/samples/helloworld</a> has information on such application along with how you can use PowerShell to make your Forground application as the Default App; (replacing the default Console Shell / Launcher) etc</p>  <p>Another interesting development option is Node.js (Chakra build) on Windows 10. Node.js uses Chrome’ Javascript engine; Microsoft open sourced its Edge’ Javascript engine Chakra; and there exists <a title="https://github.com/nodejs/node-chakracore" href="https://github.com/nodejs/node-chakracore" target="_blank">https://github.com/nodejs/node-chakracore</a> that let Node.js uses Chakra. <a title="https://www.npmjs.com/package/uwp" href="https://www.npmjs.com/package/uwp" target="_blank">https://www.npmjs.com/package/uwp</a> NPM package allows us to access Universal Windows Platform (UWP) apis from Node.js (Chakra build) on Windows 10; including Windows 10 IoT Core. We can install <a href="https://www.visualstudio.com/vs/node-js/" target="_blank">Node.js Tools for Visual Studio</a> (NTVS) that enables a powerful Node.js development environment within Visual Studio and there exists <a href="https://github.com/ms-iot/ntvsiot" target="_blank">NTVS UWP Extension</a> that enables deploying Node.js + our app as a UWP application to Windows 10; including Desktop, Mobile and IoT.</p>  <p><img width="662" height="463" title="nodejs-uwp-tools" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="nodejs-uwp-tools" src="/images/Blink-with-Windows-10-IoT_A75D/nodejs-uwp-tools.jpg" border="0"></p>  <p>Installing Node.js Tools for UWP Apps; takes care of everything; it will install Chakra Node.js, NTVS and NTVS UWP Extensions</p>  <ul>   <li>I didn't added Chakra Node.js into PATH; as I already had a “normal” Node.js in the PATH and didn't wanted to disturb my other project; and this doesnt affect NTVS UWP Projects and they work fine </li> </ul>  <p><img width="943" height="585" title="nodejs-uwp-projecttemplates" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="nodejs-uwp-projecttemplates" src="/images/Blink-with-Windows-10-IoT_A75D/nodejs-uwp-projecttemplates.png" border="0"></p>  <p>NTVS UWP Extensions also installs some nice collection of Project Templates. For my Blink; I used Basic Node.js Web Server (Universal Windows) project template and it had uwp npm module already setup. I simply wrote these lines in the server.js</p>  <blockquote>   <p><font face="Courier New">var http = require('http');        <br>var uwp = require("uwp");         <br>uwp.projectNamespace("Windows");         <br>var gpioController = Windows.Devices.Gpio.GpioController.getDefault();         <br>var pin = gpioController.openPin(17);         <br>pin.setDriveMode(Windows.Devices.Gpio.GpioPinDriveMode.output)         <br>pin.write(Windows.Devices.Gpio.GpioPinValue.high);</font></p>    <p><font face="Courier New">http.createServer(function (req, res) {        <br>&nbsp;&nbsp;&nbsp; res.writeHead(200, { 'Content-Type': 'text/plain' });         <br>&nbsp;&nbsp;&nbsp; if (pin.read() == Windows.Devices.Gpio.GpioPinValue.high) {         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pin.write(Windows.Devices.Gpio.GpioPinValue.low);         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; res.end("Off");         <br>&nbsp;&nbsp;&nbsp; } else {         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pin.write(Windows.Devices.Gpio.GpioPinValue.high);         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; res.end("On");         <br>&nbsp;&nbsp;&nbsp; }         <br>}).listen(3000);</font></p>    <p><font face="Courier New">uwp.close();</font></p> </blockquote>  <ul>   <li>Notice the use of uwp and that it needs to be close() at the end </li>    <li>Notice how we got referenced to gpioController and pin; and how their naming is Javascript friendly camel Cased</li>    <li>We kept things simple; on each reload; the LED switches from On to Off and vice versa; we can have buttons like ESP8266 web interface we did in previous post</li> </ul>  <p><img width="1004" height="494" title="nodejs-uwp-run" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" alt="nodejs-uwp-run" src="/images/Blink-with-Windows-10-IoT_A75D/nodejs-uwp-run.png" border="0"></p>  <p>Thanks to NTVS UWP Extensions; the project template offers UWP projects like Visual Studio integrations for debugging / running and deploying the application to remote machine (Windows 10 IoT) and packaging the application etc.</p>  <h1>Windows 10 IoT Resources</h1>  <ul>   <li><a title="https://developer.microsoft.com/en-us/windows/iot/samples" href="https://developer.microsoft.com/en-us/windows/iot/samples">https://developer.microsoft.com/en-us/windows/iot/samples</a></li>    <li><a title="https://blogs.windows.com/buildingapps/tag/iot" href="https://blogs.windows.com/buildingapps/tag/iot" target="_blank">https://blogs.windows.com/buildingapps/tag/iot</a></li>    <li><a title="https://microsoft.hackster.io/en-US" href="https://microsoft.hackster.io/en-US" target="_blank">https://microsoft.hackster.io/en-US</a></li> </ul>  <h1>NTVS UWP Extension Resources</h1>  <ul>   <li><a title="https://developer.microsoft.com/en-us/windows/iot/samples/helloworldnode" href="https://developer.microsoft.com/en-us/windows/iot/samples/helloworldnode">https://developer.microsoft.com/en-us/windows/iot/samples/helloworldnode</a> </li>    <li><a title="https://developer.microsoft.com/en-us/windows/iot/samples/helloblinkynode" href="https://developer.microsoft.com/en-us/windows/iot/samples/helloblinkynode">https://developer.microsoft.com/en-us/windows/iot/samples/helloblinkynode</a> </li> </ul>  <h1>Windows 10 IoT Review</h1>  <p>Windows 10 IoT Core is okay; it can become better&nbsp;if they provide Windows 10 like “Start” screen / launcher with Notifications,&nbsp;proper Command Prompt + PowerShell, File Explorer, Settings, Application Installer and Task Scheduler. PowerShell remoting is too cryptic and SSH is industry standard; Windows badly needs SSH Server for headless deployments. They should also revitalize ClickOnce; its a great enterprise grade auto-update platform; and can be used to update “Metro or IoT Apps” in personal / enterprise scenarios. Say if I develop an IoT solution for a farmer who is not that tech savvy; if he asks me to make some changes or add features; its too complicated to update the apps on the devices remotely. We can use Windows Store; but its too demanding and doesn't fit everywhere</p>  <p>There is no “Server Side” stuff; given Rasbian is a solid OS on Raspberry Pi and we can deploy mySQL, Apache, MQTT broker and what not. Microsoft should bring their server offerings to such single board computers; make at least IIS and ASP.NET Core&nbsp;available on it; SQL Express, MSMQ (with MQTT support)&nbsp;and some file syncing tools / solution would be appreciated. Currently it feels more like a “terminal” for their Azure offerings and not everyone wants to connect to the “Cloud”. For designing such&nbsp;solutions&nbsp;we&nbsp;need a separate Raspberry PI running Rasbian or a PC / Server for things like MQTT, database and web interface etc.</p>  <ul>   <li>I had Cortana in the list above; but in latest Insider builds; its there&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li><li>My son would like to connect the XBox Controller to PI’s USB and play games from Windows Store on the PI connected to big screen; XBox is a great gaming console; but PI is a nice Media Center on Linux platform; and “Windows” has solid foundation and with casual games, TV Shows and Movies from Windows Store; this can become a “thing”</li> </ul>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>
