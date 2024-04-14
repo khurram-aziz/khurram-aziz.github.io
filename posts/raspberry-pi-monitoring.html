@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Khurram Aziz - Monitoring Raspberry Pi</title>
+
+  <link rel="canonical" href='/posts/raspberry-pi-monitoring'>
+
+      <link type="application/rss+xml" rel="alternate" title="Khurram Aziz" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="Khurram Aziz" href="/feed.atom" />
+
+  <meta name="application-name" content='Khurram Aziz' />
+  <meta name="msapplication-tooltip" content='Khurram Aziz' />
+  <meta name="msapplication-starturl" content='/' />
+
+  <meta property="og:title" content='Khurram Aziz - Monitoring Raspberry Pi' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='/posts/raspberry-pi-monitoring' />
+
+  <link rel="icon" href='/favicon.ico'>
+
+  <!-- Custom fonts for this template -->
+  <link href='/vendor/fontawesome-free/css/all.min.css' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" data-no-mirror>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" data-no-mirror>
+
+  <!-- Styles for this template (also includes Bootstrap) -->
+  <link href='/scss/clean-blog.css' rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+
+  
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href='/'>Khurram Aziz</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+    <a class="nav-link" href="/pages/about">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pages/series">Series</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/posts">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tags">Tags</a>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+  <header class="masthead no-image">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='post-heading'>
+          <h1>
+            Monitoring Raspberry Pi
+          </h1>
+            <div class="meta">Published on Friday, May 20, 2016</div>
+              <div class="mt-3">
+                  <a href="/tags/iot" class="badge text-bg-light"> IoT</a>
+                  <a href="/tags/linux" class="badge text-bg-light"> Linux</a>
+                  <a href="/tags/raspberry-pi" class="badge text-bg-light"> Raspberry Pi</a>
+                  <a href="/tags/system-administration" class="badge text-bg-light"> System Administration</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-12">
+        <ul>   <li>Part 1: <a title="Staging Node Application" href="http://weblogs.com.pk/khurram/archive/2016/05/18/staging-node-application.aspx">Staging Node Application</a></li>    <li>Part 2: <a title="Staging Node Application on Raspberry Pi" href="/posts/raspberry-pi-docker-node.html">Staging Node Application on Raspberry Pi</a></li> </ul>  <p>Before commissioning the Raspberry Pi; it would be nice if we setup some monitoring; so we can correlate any issue in the field with device status. This becomes important especially for devices like Raspberry Pi that has limited resources. The simplest and easiest way is to setup SNMP; its the protocol to collect and organize information about the managed devices on IP networks. Given Raspbian is a just another Linux; we can easily setup SNMPD; a SNMP daemon; and can monitor the device remotely or even from within the device. To install SNMPD; issue the following commands; and once installed backup the /etc/snmp/snmpd.conf</p>  <p><font face="Courier New">$ sudo apt-get install snmpd      <br />$ sudo cp /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.original</font></p>  <p>Next; edit the snmpd.conf; remove everything and punch in the following</p>  <p><font face="Courier New">agentAddress&#160;&#160;&#160; 127.0.0.1:161      <br />rocommunity&#160;&#160;&#160;&#160; public</font></p>  <p>Restart the snmpd using</p>  <p><font face="Courier New">$ sudo /etc/init.d/snmpd restart</font></p>  <p>With above arrangements in place; we are basically running the SNMPD (SNMP Agent) on localhost 161 UDP port and have configured “public” a read only community (password / key). We can now “query” SNMPD using snmp utilities. To install them issue</p>  <p><font face="Courier New">$ sudo apt-get install snmp</font></p>  <p>Once installed; issue the following command to query free CPU percentage via snmp and we will have an output like this</p>  <p><font face="Courier New">$ snmpget -v 1 -c public localhost .1.3.6.1.4.1.2021.11.11.0      <br />iso.3.6.1.4.1.2021.11.11.0 = INTEGER: 90</font></p>  <p>.1.3.6.1.4.1… is an OID; there are well known OID (Object Identifier) for free CPU; there are other OIDs for things like this; some of which we will use later.</p>  <ul>   <li><a title="https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol" href="https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol">https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol</a> </li>    <li><a title="https://wiki.wireshark.org/SNMP" href="https://wiki.wireshark.org/SNMP">https://wiki.wireshark.org/SNMP</a> </li> </ul>  <p>Next we want to “expose” CPU Temperature through SNMP; by default its not there and given device IO is done in Linux through files and SNMPD has an option to get data by running a script and expose it through additional OID. Lets make a script for CPU temperature</p>  <p><font face="Courier New">$ nano snmp-cpu-temp.sh</font></p>  <p>Punch in the following</p>  <p><font face="Courier New">#!/bin/bash      <br />if [ &quot;$1&quot; = &quot;-g&quot; ]       <br />then       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo .1.3.6.1.2.1.25.1.8       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo gauge       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; cat /sys/class/thermal/thermal_zone0/temp       <br />fi       <br />exit 0       <br /></font></p>  <p>Make the script executable and run it with -g</p>  <p><font face="Courier New">$ chmod +x snmp-cpu-temp.sh      <br />$ ./snmp-cpu-temp.sh -g       <br />.1.3.6.1.2.1.25.1.8       <br />gauge       <br />49768</font></p>  <p>The temperature is 49.768 degree Celsius; lets edit snmpd.conf ($ sudo nano /etc/snmp/snmpd.conf) to add this script; make it look like this; have highlighted the new lines</p>  <p><font face="Courier New">agentAddress&#160;&#160;&#160; 127.0.0.1:161      <br />rocommunity&#160;&#160;&#160;&#160; public       <br /><strong><font color="#ff0000">pass&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; .1.3.6.1.2.1.25.1.8 /bin/sh /home/pi/snmp-cpu-temp.sh</font></strong></font></p>  <p>Restart the snmpd and query the OID using snmpget and we will have the value</p>  <p><font face="Courier New">$ sudo /etc/init.d/snmpd restart      <br />[ ok ] Restarting snmpd (via systemctl): snmpd.service.       <br />$ snmpget -v 1 -c public localhost .1.3.6.1.2.1.25.1.8       <br />iso.3.6.1.2.1.25.1.8 = Gauge32: 50458</font></p>  <p>As we already have the NGINX installed; we can easily setup MRTG; its light weight and widely used monitoring setup that generate graphs using data gathered over SNMP that we can host in NGINX and view remotely. To install issue this command:</p>  <p>$ sudo apt-get install mrtg</p>  <p>MRTG comes with helper utilities like CFGMAKER and INDEXMAKER; we can use cfgmaker to make mrtg.cfg (in /etc) but given we also want to include our own additional OID; lets make the mrtg.cfg ourselves; take a backup of original /etc/mrtg.cfg; remove everything and punch in the following</p>  <p><font face="Courier New">WorkDir: /var/www/mrtg      <br />EnableIPv6: no       <br />LoadMIBs: /usr/share/snmp/mibs/UCD-SNMP-MIB.txt</font></p>  <p><font face="Courier New">Target[CPU]: 100 - .1.3.6.1.4.1.2021.11.11.0&amp;.1.3.6.1.4.1.2021.11.11.0:public&#64;localhost      <br />Options[CPU]: integer, gauge, nopercent, growright, unknaszero, noo       <br />MaxBytes[CPU]: 100       <br />YLegend[CPU]: CPU %       <br />ShortLegend[CPU]: %       <br />LegendI[CPU]: CPU       <br />Legend1[CPU]: CPU usage       <br />Title[CPU]: Raspberry Pi CPU load       <br />PageTop[CPU]: &lt;H1&gt;Raspberry Pi - CPU load&lt;/H1&gt;</font></p>  <p><font face="Courier New">Target[Memory]: .1.3.6.1.2.1.25.2.3.1.6.1&amp;.1.3.6.1.2.1.25.2.3.1.6.3:public&#64;localhost      <br />Options[Memory]: integer, gauge, nopercent, growright, unknaszero, noo       <br />MaxBytes[Memory]: 100524288       <br />YLegend[Memory]: Mem - 1K pages       <br />Factor[Memory]: 1024       <br />ShortLegend[Memory]: B       <br />LegendI[Memory]: Physical       <br />LegendO[Memory]: Virtual       <br />Legend1[Memory]: Physical       <br />Legend2[Memory]: Virtual Memory       <br />Title[Memory]: Raspberry Pi Memory Usage       <br />PageTop[Memory]: &lt;H1&gt;Raspberry Pi - Memory Usage&lt;/H1&gt;</font></p>  <p><font face="Courier New">Target[CPU-temp]: .1.3.6.1.2.1.25.1.7.0&amp;.1.3.6.1.2.1.25.1.8:public&#64;localhost      <br />Options[CPU-temp]: integer, gauge, nopercent, growright, unknaszero, noi       <br />Factor[CPU-temp]: 0.001       <br />MaxBytes[CPU-temp]: 100000       <br />Title[CPU-temp]: CPU temperature on Raspberry Pi       <br />YLegend[CPU-temp]: Temperature °C       <br />ShortLegend[CPU-temp]: °C       <br />Legend2[CPU-temp]: CPU temperature in °C       <br />LegendO[CPU-temp]: CPU temperature       <br />PageTop[CPU-temp]: &lt;H1&gt;Raspberry Pi - CPU Temperature&lt;/H1&gt;</font></p>  <p><font face="Courier New">Target[Ethernet]: 2:public&#64;localhost      <br />MaxBytes[Ethernet]: 12500000       <br />Title[Ethernet]: Raspberry Pi Ethernet Traffic Usage       <br />PageTop[Ethernet]: &lt;H1&gt;Raspberry Pi - Ethernet Traffic Usage&lt;/H1&gt;</font></p>  <p>mrtg has an option to run it as daemon and it will poll the assigned snmps and make graphs periodically. Next we need script for /etc/init.d through which not only we can run the mrtg as daemon but it will also start across system reboots. We can google the interenet; people out there has already made such script; here is one such script that you can save as /etc/init.d/mrtg ($ sudo nano /etc/init.d/mrtg)</p>  <p><font face="Courier New">PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin      <br />DAEMON=&quot;/usr/bin/mrtg&quot;       <br />PARAM=&quot; --user=root /etc/mrtg.cfg --logging /var/log/mrtg.log&quot;       <br />NAME=&quot;MRTG&quot;       <br />DESC=&quot;Multi Router Traffic Grapher Daemon&quot;</font></p>  <p><font face="Courier New">test -f $DAEMON || exit 0      <br />set -e       <br />case &quot;$1&quot; in       <br />start)       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo -n &quot;Starting $DESC: &quot;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; env LANG=C $DAEMON $PARAM       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo &quot;$NAME.&quot;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; ;;       <br />stop)       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo -n &quot;Stopping $DESC: &quot;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; killall -9 mrtg       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo &quot;$NAME.&quot;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; ;;       <br />restart|force-reload)       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo -n &quot;Restarting $DESC: &quot;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; killall -9 mrtg       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; sleep 1       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; env LANG=C $DAEMON $PARAM       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo &quot;$NAME.&quot;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; ;;       <br />*)       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; N=/etc/init.d/$NAME       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo &quot;Usage: $N {start|stop|restart|force-reload}&quot;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; exit 1       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; ;;       <br />esac       <br />exit 0</font>     <br /></p>  <p>Once saved; make it executable; create a directory/var/www/mrtg where it will store the graphs and start the daemon. It will give few warnings and its ok when running first time.</p>  <p><font face="Courier New">$ sudo chmod +x /etc/init.d/mrtg      <br />$ sudo mkdir /var/www/mrtg       <br />$ sudo /etc/init.d/mrtg start       <br /></font></p>  <p>All we need now is to expose the graphs through NGINX; lets edit /etc/nginx/sites-available/default and make it look like this ($ sudo nano /etc/nginx/sites-available/default), have highlighted the new lines</p>  <p><font face="Courier New">server {      <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; listen 80 default_server;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; listen [::]:80 default_server;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; index index.html index.htm index.nginx-debian.html;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; server_name _;       <br /><strong><font color="#ff0000">&#160;&#160;&#160;&#160;&#160;&#160;&#160; location /mrtg {          <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; alias /var/www/mrtg;           <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; }           <br /></font></strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160; location /node {       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; proxy_pass </font><font face="Courier New">http://localhost:3000;</font>     <br /><font face="Courier New">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; proxy_http_version 1.1;      <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; proxy_set_header Upgrade $http_upgrade;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; proxy_set_header Connection 'upgrade';       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; proxy_set_header Host $host;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; proxy_cache_bypass $http_upgrade;       <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; }       <br />}</font></p>  <p>Create an index.html using mrtg’s indexmaker utility and restart the nginx. While using indexmaker; it might give permission error; use sudo –i and logout when its done</p>  <p><font face="Courier New">$ sudo indexmaker /etc/mrtg.cfg &gt;&gt; /var/www/mrtg/index.html      <br />-bash: /var/www/mrtg/index.html: Permission denied       <br />$ sudo -i       <br /># indexmaker /etc/mrtg.cfg &gt;&gt; /var/www/mrtg/index.html       <br /># service nginx restart       <br /># logout</font></p>  <p>Check the graphs at http://ip/mrtg; after a while it will look something like this</p>  <p><img title="image" style="border-left-width:0px;border-right-width:0px;background-image:none;border-bottom-width:0px;padding-top:0px;padding-left:0px;margin:10px 10px 0px 0px;display:inline;padding-right:0px;border-top-width:0px;" border="0" alt="image" src="/images/Monitoring-Raspberry-Pi_12A85/image.png" width="1075" height="625" /></p>  <p>Go ahead and click the graph to view the details!</p>  <p>With this in place; we can deploy our applications and send our Raspberries into the field and once they are there we can remotely check how they are performing! We can expose the SNMP to some central monitoring system on the same lines where sys-admins can keep an eye on them; if such arrangement is in place!</p>  <p>Happy coding and deployments!</p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="copyright">Copyright &#xA9; 2024</p>
+
+        <ul class="list-inline text-center small">
+            <li class="list-inline-item">
+              <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+            </li>
+        </ul>
+        <br />
+        <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script src='/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='/vendor/startbootstrap-clean-blog/js/scripts.js'></script>
+  <script src='/js/clean-blog.js'></script>
+  
+
+  
+
+</body>
+
+</html>
