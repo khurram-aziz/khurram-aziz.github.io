@@ -104,23 +104,23 @@
 
 
 <div class="post-preview">
-  <h2 class="post-title"><a href="/posts/dockerizing-mongo-and-express">Dockerizing Mongo and Express</a></h2>
-  <p class="post-meta">Published on Thursday, April 7, 2016</p>
-<p>Now that we are familiar with the Docker and how it helps us in high isolation and compartmentalization; lets expand and try out deploying some real world application. I will be using the application that we built for <a title="MongoDB and Mongoose" href="http://weblogs.com.pk/khurram/archive/2016/04/11/mongodb-and-mongoose.aspx">MongoDB and Mongoose</a>; its an Express JS / MongoDB application and we will try deploying it across two Docker containers; one for MongoDB and the other for Express in spirit of Microservice Architecture. As per wikipedia; Microservices are a more concrete and modern interpretation of service-oriented architectures (SOA) used to build distributed software systems. Like in SOA, services in a microservice architecture are processes that communicate with each other over the network in order to fulfill a goal. Also, like in SOA, these services use technology agnostic protocols. Using separate Container for each microservice; we get fine control and can monitor and distribute components of our application at each microservice level.</p>    <p class="small"><a href="/posts/dockerizing-mongo-and-express">Read more...</a></p>
+  <h2 class="post-title"><a href="/posts/docker-compose">docker-compose</a></h2>
+  <p class="post-meta">Published on Monday, July 11, 2016</p>
+<p>When using Docker for some real world application often multiple Containers are required and to build and run them along with their <a title="Dockerfile" href="dockerfile.html" target="_blank">Dockerfile</a>s we need the scripts for building and running them; as realized in <a title="Dockerizing Mongo and Express" href="dockerizing-mongo-and-express.html" target="_blank">Dockerizing Mongo and Express</a>. This becomes hassle and Docker has docker-compose utility that solves exactly this. We can create a “Compose file” (docker-compose.yml file) which is a YAML file; a human readable data serialization format; we configure the application services and its requirements in this file and then using the tool we can create and start all the services using this “compose file”. We define the container environment in a Dockerfile and how they relate to each other and run together in the compose file and then using the docker-compose we can build / run / stop etc them in the single go together.</p>    <p class="small"><a href="/posts/docker-compose">Read more...</a></p>
 </div>
 
 
 <div class="post-preview">
-  <h2 class="post-title"><a href="/posts/net-4-countdownevent">.NET 4 - CountdownEvent</a></h2>
-  <p class="post-meta">Published on Friday, October 23, 2009</p>
-<p>A while ago I was asked to complete a job that polls a data from many devices connected over satellite (slow and congested) links. The requirement was to poll data periodically; and somtimes while previous poll cycle was running the next poll time gets triggered. I used the <a href="http://msdn.microsoft.com/en-us/magazine/dvdarchive/cc163644.aspx" target="_blank">Abortable Threadpool</a> to implement this but still had to implement my own Count Down approach so that I can track if the job gets completed in the alloted time; it simply returns else after the allowed time; it aborts all the remaining queued work! It was really ugly implementation; I had to periodically check if the completed count has reached the queued work count. Now we have a new class in .NET; CountdownEvent; which exactly does the same. Its a synchronization primitive that signals when its count is reached zero. The code now looks neat!</p>    <p class="small"><a href="/posts/net-4-countdownevent">Read more...</a></p>
+  <h2 class="post-title"><a href="/posts/dockerfile">Dockerfile</a></h2>
+  <p class="post-meta">Published on Tuesday, June 14, 2016</p>
+<p>Docker can build images automatically by reading the instructions from a Dockerfile. Its a text file that contains the commands how to assemble the required image. This can be used as a replacement of manually creating an image from scratch installing required software etc and then exporting and loading it someplace else; the technique we discussed in the <a href="/posts/raspberry-pi-docker.html">first Docker post here</a>. We can simply handover the Dockerfile instead. Lets create a Node Container using the Dockerfile for that simple Hello World thing! Create a Dockerfile; and punch in the following</p>    <p class="small"><a href="/posts/dockerfile">Read more...</a></p>
 </div>
 
 
 <div class="post-preview">
-  <h2 class="post-title"><a href="/posts/net-4-barrier-class">.NET 4 - Barrier Class</a></h2>
-  <p class="post-meta">Published on Friday, October 23, 2009</p>
-<p>Barrier class is newly introduced in .NET 4 and it enables the multiple tasks to cooperatively work on an algorithm in parallel through multiple phases. For instance you are polling the data from multiple data source; and this polling is multi step process. While polling in parallel you want coordination that on each step the parallel running tasks before moving to next step coordinate with each other. <a href="http://www.microsoft.com/downloads/details.aspx?familyid=752CB725-969B-4732-A383-ED5740F02E93&amp;amp;displaylang=en" target="_blank">Visual Studio 2010 and .NET Framework 4 Training Kit (October Preview)</a> has a great sample which I am reproducing below!</p>    <p class="small"><a href="/posts/net-4-barrier-class">Read more...</a></p>
+  <h2 class="post-title"><a href="/posts/raspberry-pi-docker-node">Running Node Application in Docker Container on Raspberry Pi</a></h2>
+  <p class="post-meta">Published on Wednesday, June 1, 2016</p>
+<p><img width="640" height="285" style="margin:10px 10px 0px 0px;" src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*_MtS4HqN2srTcrSyet61DQ.jpeg"></p>    <p class="small"><a href="/posts/raspberry-pi-docker-node">Read more...</a></p>
 </div>
 
   <div>
@@ -128,6 +128,7 @@
         <a class="btn btn-primary" href="/page/11" role="button"><i class="fas fa-angle-double-left"></i> Newer</a>
     </div>
     <div class="float-sm-end">
+        <a class="btn btn-primary" href="/page/13" role="button">Older <i class="fas fa-angle-double-right"></i></a>
     </div>
     <div class="clearfix"></div>
   </div>
@@ -136,14 +137,14 @@
     <div class="col-md-4 mt-4 mt-md-0 col-sm-height sidebar">
           <div>
             <h5>Tags</h5>
-              <a href="/tags/linux" class="badge text-bg-light"> Linux (14)</a>
-              <a href="/tags/docker" class="badge text-bg-light"> Docker (14)</a>
-              <a href="/tags/system-administration" class="badge text-bg-light"> System Administration (12)</a>
+              <a href="/tags/linux" class="badge text-bg-light"> Linux (20)</a>
+              <a href="/tags/docker" class="badge text-bg-light"> Docker (18)</a>
+              <a href="/tags/system-administration" class="badge text-bg-light"> System Administration (17)</a>
+              <a href="/tags/raspberry-pi" class="badge text-bg-light"> Raspberry Pi (14)</a>
               <a href="/tags/databases" class="badge text-bg-light"> Databases (10)</a>
+              <a href="/tags/iot" class="badge text-bg-light"> IoT (10)</a>
               <a href="/tags/net" class="badge text-bg-light"> .NET (10)</a>
-              <a href="/tags/iot" class="badge text-bg-light"> IoT (9)</a>
-              <a href="/tags/node" class="badge text-bg-light"> Node (8)</a>
-              <a href="/tags/raspberry-pi" class="badge text-bg-light"> Raspberry Pi (8)</a>
+              <a href="/tags/node" class="badge text-bg-light"> Node (9)</a>
               <a href="/tags/esp8266" class="badge text-bg-light"> ESP8266 (7)</a>
               <a href="/tags/observability" class="badge text-bg-light"> Observability (6)</a>
             <div class="mt-3">

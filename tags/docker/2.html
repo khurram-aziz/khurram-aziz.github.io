@@ -102,6 +102,27 @@
 
 
 <div class="post-preview">
+  <h2 class="post-title"><a href="/posts/raspberry-pi-visualc">Visual C&#x2B;&#x2B; for Linux Development</a></h2>
+  <p class="post-meta">Published on Wednesday, July 20, 2016</p>
+<p><a href="https://visualstudiogallery.msdn.microsoft.com/725025cf-7067-45c2-8d01-1e0fd359ae6e" target="_blank">Visual C++ for Linux Development</a> is the Visual Studio 2015’s extension by Microsoft that lets us write C++ code in Visual Studio for Linux machines and devices. It connects to the machine or device over SSH and uses machine / device’ g++, gdb and gdbserver to provide compilation and debugging experience from within Visual Studio. After installing the extension; it adds Linux Connection Manager into Visual Studio’s Options dialog through which we manage the SSH connections to Linux machines or devices (ARM also supported). It also adds the project types; currently there are three; Blink (Raspberry), Console Application (Linux) and Empty Project (Linux). You can write the C++ code using Unix headers and libraries. For intellisence / removing red squiggles; you will need to download the header files (using PUTTY’s PSCP) to the development machine and add that folder in the project properties’ VC++ Directories section</p>    <p class="small"><a href="/posts/raspberry-pi-visualc">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/raspberry-pi-glusterfs-samba">GlusterFS Volume as Samba Share</a></h2>
+  <p class="post-meta">Published on Tuesday, July 19, 2016</p>
+<p>We made Docker Container using a <a href="/posts/dockerfile.html" target="_blank">Dockerfile</a> in the <a href="/posts/raspberry-pi-glusterfs.html" target="_blank">GlusterFS</a> post that can mount a GlusterFS volume (running on Raspberry Pis); lets extend our Dockerfile and add Samba Server to expose the mounted directory as Samba Share so it can be accessed from Windows. For this we need to add these additional lines into the Dockerfile</p>    <p class="small"><a href="/posts/raspberry-pi-glusterfs-samba">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/raspberry-pi-glusterfs">GlusterFS</a></h2>
+  <p class="post-meta">Published on Thursday, July 14, 2016</p>
+<p>GlusterFS is a scale-out network-attached storage file system that has found applications in cloud computing, streaming media services, and content delivery networks. GlusterFS was developed originally by Gluster, Inc. and then by Red Hat, Inc., as a result of Red Hat acquiring Gluster in 2011, says the Wikipedia. Its a distributed file system that we run on multiple hosts having “bricks” that hosts the data physically (on storage); the nodes communicate with other (peers) and we can create a volume across these nodes with different strategies; replication in one of them if chosen data will get stored in bricks of all contributing nodes acting like RAID 1</p>    <p class="small"><a href="/posts/raspberry-pi-glusterfs">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
   <h2 class="post-title"><a href="/posts/docker-compose">docker-compose</a></h2>
   <p class="post-meta">Published on Monday, July 11, 2016</p>
 <p>When using Docker for some real world application often multiple Containers are required and to build and run them along with their <a title="Dockerfile" href="dockerfile.html" target="_blank">Dockerfile</a>s we need the scripts for building and running them; as realized in <a title="Dockerizing Mongo and Express" href="dockerizing-mongo-and-express.html" target="_blank">Dockerizing Mongo and Express</a>. This becomes hassle and Docker has docker-compose utility that solves exactly this. We can create a “Compose file” (docker-compose.yml file) which is a YAML file; a human readable data serialization format; we configure the application services and its requirements in this file and then using the tool we can create and start all the services using this “compose file”. We define the container environment in a Dockerfile and how they relate to each other and run together in the compose file and then using the docker-compose we can build / run / stop etc them in the single go together.</p>    <p class="small"><a href="/posts/docker-compose">Read more...</a></p>
@@ -111,14 +132,21 @@
 <div class="post-preview">
   <h2 class="post-title"><a href="/posts/dockerfile">Dockerfile</a></h2>
   <p class="post-meta">Published on Tuesday, June 14, 2016</p>
-<p>Docker can build images automatically by reading the instructions from a Dockerfile. Its a text file that contains the commands how to assemble the required image. This can be used as a replacement of manually creating an image from scratch installing required software etc and then exporting and loading it someplace else; the technique we discussed in the <a href="http://weblogs.com.pk/khurram/archive/2016/05/31/docker-on-raspberry-pi.aspx">first Docker post here</a>. We can simply handover the Dockerfile instead. Lets create a Node Container using the Dockerfile for that simple Hello World thing! Create a Dockerfile; and punch in the following</p>    <p class="small"><a href="/posts/dockerfile">Read more...</a></p>
+<p>Docker can build images automatically by reading the instructions from a Dockerfile. Its a text file that contains the commands how to assemble the required image. This can be used as a replacement of manually creating an image from scratch installing required software etc and then exporting and loading it someplace else; the technique we discussed in the <a href="/posts/raspberry-pi-docker.html">first Docker post here</a>. We can simply handover the Dockerfile instead. Lets create a Node Container using the Dockerfile for that simple Hello World thing! Create a Dockerfile; and punch in the following</p>    <p class="small"><a href="/posts/dockerfile">Read more...</a></p>
 </div>
 
 
 <div class="post-preview">
-  <h2 class="post-title"><a href="/posts/running-node-application-in-docker-container-on-raspberry-pi">Running Node Application in Docker Container on Raspberry Pi</a></h2>
+  <h2 class="post-title"><a href="/posts/raspberry-pi-docker-node">Running Node Application in Docker Container on Raspberry Pi</a></h2>
   <p class="post-meta">Published on Wednesday, June 1, 2016</p>
-<p><img width="640" height="285" style="margin:10px 10px 0px 0px;" src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*_MtS4HqN2srTcrSyet61DQ.jpeg"></p>    <p class="small"><a href="/posts/running-node-application-in-docker-container-on-raspberry-pi">Read more...</a></p>
+<p><img width="640" height="285" style="margin:10px 10px 0px 0px;" src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*_MtS4HqN2srTcrSyet61DQ.jpeg"></p>    <p class="small"><a href="/posts/raspberry-pi-docker-node">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/raspberry-pi-docker">Docker on Raspberry Pi</a></h2>
+  <p class="post-meta">Published on Tuesday, May 31, 2016</p>
+<p>Docker allow us to package our application with all its dependencies into a standardized unit; the application run in the Container that has everything it needs to run and this is kept in isolation from the other Container running on the Server. Its architecturally different from Virtual Machine and are more portable and efficient; they share the kernel and run as an isolated process in user space on the host operating system.</p>    <p class="small"><a href="/posts/raspberry-pi-docker">Read more...</a></p>
 </div>
 
 
@@ -139,21 +167,21 @@
 
       </div>
       <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
-          <a href="/tags/linux" class="badge text-bg-light"> Linux (14)</a>
-          <a href="/tags/docker" class="badge text-bg-dark"> Docker (14)</a>
-          <a href="/tags/system-administration" class="badge text-bg-light"> System Administration (12)</a>
+          <a href="/tags/linux" class="badge text-bg-light"> Linux (20)</a>
+          <a href="/tags/docker" class="badge text-bg-dark"> Docker (18)</a>
+          <a href="/tags/system-administration" class="badge text-bg-light"> System Administration (17)</a>
+          <a href="/tags/raspberry-pi" class="badge text-bg-light"> Raspberry Pi (14)</a>
           <a href="/tags/databases" class="badge text-bg-light"> Databases (10)</a>
+          <a href="/tags/iot" class="badge text-bg-light"> IoT (10)</a>
           <a href="/tags/net" class="badge text-bg-light"> .NET (10)</a>
-          <a href="/tags/iot" class="badge text-bg-light"> IoT (9)</a>
-          <a href="/tags/node" class="badge text-bg-light"> Node (8)</a>
-          <a href="/tags/raspberry-pi" class="badge text-bg-light"> Raspberry Pi (8)</a>
+          <a href="/tags/node" class="badge text-bg-light"> Node (9)</a>
           <a href="/tags/esp8266" class="badge text-bg-light"> ESP8266 (7)</a>
           <a href="/tags/observability" class="badge text-bg-light"> Observability (6)</a>
           <a href="/tags/arduino" class="badge text-bg-light"> Arduino (6)</a>
+          <a href="/tags/visual-studio" class="badge text-bg-light"> Visual Studio (5)</a>
+          <a href="/tags/windows" class="badge text-bg-light"> Windows (5)</a>
           <a href="/tags/asp.net" class="badge text-bg-light"> ASP.NET (4)</a>
           <a href="/tags/python" class="badge text-bg-light"> Python (4)</a>
-          <a href="/tags/visual-studio" class="badge text-bg-light"> Visual Studio (4)</a>
-          <a href="/tags/windows" class="badge text-bg-light"> Windows (4)</a>
           <a href="/tags/devops" class="badge text-bg-light"> DevOps (2)</a>
           <a href="/tags/entity-framework" class="badge text-bg-light"> Entity Framework (1)</a>
           <a href="/tags/android" class="badge text-bg-light"> Android (1)</a>

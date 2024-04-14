@@ -102,9 +102,44 @@
 
 
 <div class="post-preview">
-  <h2 class="post-title"><a href="/posts/running-node-application-in-docker-container-on-raspberry-pi">Running Node Application in Docker Container on Raspberry Pi</a></h2>
+  <h2 class="post-title"><a href="/posts/raspberry-pi-glusterfs-samba">GlusterFS Volume as Samba Share</a></h2>
+  <p class="post-meta">Published on Tuesday, July 19, 2016</p>
+<p>We made Docker Container using a <a href="/posts/dockerfile.html" target="_blank">Dockerfile</a> in the <a href="/posts/raspberry-pi-glusterfs.html" target="_blank">GlusterFS</a> post that can mount a GlusterFS volume (running on Raspberry Pis); lets extend our Dockerfile and add Samba Server to expose the mounted directory as Samba Share so it can be accessed from Windows. For this we need to add these additional lines into the Dockerfile</p>    <p class="small"><a href="/posts/raspberry-pi-glusterfs-samba">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/raspberry-pi-glusterfs">GlusterFS</a></h2>
+  <p class="post-meta">Published on Thursday, July 14, 2016</p>
+<p>GlusterFS is a scale-out network-attached storage file system that has found applications in cloud computing, streaming media services, and content delivery networks. GlusterFS was developed originally by Gluster, Inc. and then by Red Hat, Inc., as a result of Red Hat acquiring Gluster in 2011, says the Wikipedia. Its a distributed file system that we run on multiple hosts having “bricks” that hosts the data physically (on storage); the nodes communicate with other (peers) and we can create a volume across these nodes with different strategies; replication in one of them if chosen data will get stored in bricks of all contributing nodes acting like RAID 1</p>    <p class="small"><a href="/posts/raspberry-pi-glusterfs">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/raspberry-pi-docker-node">Running Node Application in Docker Container on Raspberry Pi</a></h2>
   <p class="post-meta">Published on Wednesday, June 1, 2016</p>
-<p><img width="640" height="285" style="margin:10px 10px 0px 0px;" src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*_MtS4HqN2srTcrSyet61DQ.jpeg"></p>    <p class="small"><a href="/posts/running-node-application-in-docker-container-on-raspberry-pi">Read more...</a></p>
+<p><img width="640" height="285" style="margin:10px 10px 0px 0px;" src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*_MtS4HqN2srTcrSyet61DQ.jpeg"></p>    <p class="small"><a href="/posts/raspberry-pi-docker-node">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/raspberry-pi-docker">Docker on Raspberry Pi</a></h2>
+  <p class="post-meta">Published on Tuesday, May 31, 2016</p>
+<p>Docker allow us to package our application with all its dependencies into a standardized unit; the application run in the Container that has everything it needs to run and this is kept in isolation from the other Container running on the Server. Its architecturally different from Virtual Machine and are more portable and efficient; they share the kernel and run as an isolated process in user space on the host operating system.</p>    <p class="small"><a href="/posts/raspberry-pi-docker">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/raspberry-pi-monitoring">Monitoring Raspberry Pi</a></h2>
+  <p class="post-meta">Published on Friday, May 20, 2016</p>
+<p>Before commissioning the Raspberry Pi; it would be nice if we setup some monitoring; so we can correlate any issue in the field with device status. This becomes important especially for devices like Raspberry Pi that has limited resources. The simplest and easiest way is to setup SNMP; its the protocol to collect and organize information about the managed devices on IP networks. Given Raspbian is a just another Linux; we can easily setup SNMPD; a SNMP daemon; and can monitor the device remotely or even from within the device. To install SNMPD; issue the following commands; and once installed backup the /etc/snmp/snmpd.conf</p>    <p class="small"><a href="/posts/raspberry-pi-monitoring">Read more...</a></p>
+</div>
+
+
+<div class="post-preview">
+  <h2 class="post-title"><a href="/posts/raspberry-pi-node">Staging Node Application on Raspberry Pi</a></h2>
+  <p class="post-meta">Published on Thursday, May 19, 2016</p>
+<p>To make things interesting; lets test our Node application on <a href="https://www.raspberrypi.org" target="_blank">Raspberry Pi</a> running <a href="https://www.raspbian.org" target="_blank">Raspbian</a>. Raspbian; just like Ubuntu; is based on Debian, so the learnings we did in first part can be applied. Raspberry Pi is interesting due to its low cost, credit card sized and Raspbian OS, it can provide PC like computing in the field or workplace needing very little power and this enables lots of new interesting possibilities. PS Raspbian OS is one option; we can try/use other OSes on this little thing!</p>    <p class="small"><a href="/posts/raspberry-pi-node">Read more...</a></p>
 </div>
 
 
@@ -125,21 +160,21 @@
 
       </div>
       <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
-          <a href="/tags/linux" class="badge text-bg-light"> Linux (14)</a>
-          <a href="/tags/docker" class="badge text-bg-light"> Docker (14)</a>
-          <a href="/tags/system-administration" class="badge text-bg-dark"> System Administration (12)</a>
+          <a href="/tags/linux" class="badge text-bg-light"> Linux (20)</a>
+          <a href="/tags/docker" class="badge text-bg-light"> Docker (18)</a>
+          <a href="/tags/system-administration" class="badge text-bg-dark"> System Administration (17)</a>
+          <a href="/tags/raspberry-pi" class="badge text-bg-light"> Raspberry Pi (14)</a>
           <a href="/tags/databases" class="badge text-bg-light"> Databases (10)</a>
+          <a href="/tags/iot" class="badge text-bg-light"> IoT (10)</a>
           <a href="/tags/net" class="badge text-bg-light"> .NET (10)</a>
-          <a href="/tags/iot" class="badge text-bg-light"> IoT (9)</a>
-          <a href="/tags/node" class="badge text-bg-light"> Node (8)</a>
-          <a href="/tags/raspberry-pi" class="badge text-bg-light"> Raspberry Pi (8)</a>
+          <a href="/tags/node" class="badge text-bg-light"> Node (9)</a>
           <a href="/tags/esp8266" class="badge text-bg-light"> ESP8266 (7)</a>
           <a href="/tags/observability" class="badge text-bg-light"> Observability (6)</a>
           <a href="/tags/arduino" class="badge text-bg-light"> Arduino (6)</a>
+          <a href="/tags/visual-studio" class="badge text-bg-light"> Visual Studio (5)</a>
+          <a href="/tags/windows" class="badge text-bg-light"> Windows (5)</a>
           <a href="/tags/asp.net" class="badge text-bg-light"> ASP.NET (4)</a>
           <a href="/tags/python" class="badge text-bg-light"> Python (4)</a>
-          <a href="/tags/visual-studio" class="badge text-bg-light"> Visual Studio (4)</a>
-          <a href="/tags/windows" class="badge text-bg-light"> Windows (4)</a>
           <a href="/tags/devops" class="badge text-bg-light"> DevOps (2)</a>
           <a href="/tags/entity-framework" class="badge text-bg-light"> Entity Framework (1)</a>
           <a href="/tags/android" class="badge text-bg-light"> Android (1)</a>
